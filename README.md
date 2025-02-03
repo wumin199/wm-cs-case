@@ -1,4 +1,4 @@
-# wm-cs-case
+## wm-cs-case
 wcc: csharp test
 
 
@@ -12,3 +12,10 @@ wcc: csharp test
 4. 委托
 5. NuGet
 6. 打包
+
+
+
+## 参考资料
+
+- [.NET 分发打包](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
+- [.NET CLI 概述](https://learn.microsoft.com/zh-cn/dotnet/core/tools/)
