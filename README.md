@@ -75,6 +75,12 @@ Clean .NET项目：
 
 `Explorer` -> `Solution Expolrer`
 
+
+简单格式化：[Formatting and Linting](https://code.visualstudio.com/docs/csharp/formatting-linting), [EditorConfig](https://editorconfig.org/)
+
+Solution Expoler的介绍：[project-management](https://code.visualstudio.com/docs/csharp/project-management)
+
+
 其他：
 
 <div style="display: flex; justify-content: center; align-items: center;">
@@ -107,6 +113,8 @@ Clean .NET项目：
 </div>
 
 ### Build
+
+
 
 Debug之前需要先编译。
 
@@ -188,7 +196,9 @@ dotnet build C:/Users/wumin/Desktop/test/wm-cs-case/wm-cs-case.sln /property:Gen
 
 ### Debug方法
 
-Debug之前需要先编译。
+
+
+Debug之前需要先编译。Debug参考：[VSCode Debugging](https://code.visualstudio.com/docs/csharp/debugging)（最全）, [Configuring C# debugging](https://code.visualstudio.com/docs/csharp/debugger-settings)
 
 单一文件的Debug方法同上：光标选中某个文件，右上角直接点三角形运行按钮(支持直接运行或带断点的Debug运行)
 
@@ -315,31 +325,28 @@ see: [Debugging C# apps](https://youtu.be/VuIOk3DqKgc)
 ```
 
 
+### Test
 
-也可以把光标放到main文件下，如何按 `F5`，或者 `Run` -> `Start Debugging`
-
-Clean .NET项目，包括删除多余项目后，重新更新 `.sln`等：
-
-
-
-
-
-
+[Testing with C# Dev Kit](https://code.visualstudio.com/docs/csharp/testing)
 
 ## 参考资料
 
 
 - C# in Vscode（突出VSCode相关，重点不是C#学习）
-  - [Introductory Videos for C# in VS Code](https://code.visualstudio.com/docs/csharp/introvideos-csharp)(左侧菜单栏有全部C# with VSCode)
+  - [Introductory Videos for C# in VS Code](https://code.visualstudio.com/docs/csharp/introvideos-csharp)(左侧菜单栏有全部C# with VSCode，里面有各类视频包括debug等)
   - [Getting Started with C# in VS Code](https://code.visualstudio.com/docs/csharp/get-started)（只教如何用Vscode编写C#，不教C#本身）
   - [Working with C#](https://code.visualstudio.com/docs/languages/csharp)
   - [教程：使用 Visual Studio Code 创建 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/with-visual-studio-code)
 
 - [.NET 基础知识文档](https://learn.microsoft.com/zh-cn/dotnet/fundamentals/)
-- [.NET 入门](https://learn.microsoft.com/zh-cn/dotnet/core/get-started)
-- [.NET 分发打包](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
-- [.NET 应用程序发布概述](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
-- [.NET CLI 概述](https://learn.microsoft.com/zh-cn/dotnet/core/tools/)
-- [教程：使用 Visual Studio Code 创建 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/with-visual-studio-code)
-
+  - [.NET 入门](https://learn.microsoft.com/zh-cn/dotnet/core/get-started)
+  - [.NET 分发打包](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
+  - [.NET 应用程序发布概述](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
+  - [.NET CLI 概述](https://learn.microsoft.com/zh-cn/dotnet/core/tools/)
+  - [教程：使用 Visual Studio Code 创建 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/with-visual-studio-code)
+- [C# 文档](https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/)
+  - [C# 语法](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference)(基础数据类型等)
+  - [C# 类型系统](https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/)
+  - [强制转换和类型转换（C# 编程指南）](https://learn.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/casting-and-type-conversions)
+  - [内置类型（C# 参考）](https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/overview)
 - [Add .gitignore for C Sharp](https://github.com/github/gitignore/pull/4430/files)
