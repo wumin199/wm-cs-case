@@ -38,6 +38,8 @@ VSCode中需要安装3个插件：
 - `C#`
 - `IntelliCode for C# Dev Kit`
 
+其他可能需要装的：Markdown, python, C/C++, Copilot, GitGraph等
+
 VSCode中的一些常见设置：
 
 左下角 `Manage` -> `Settings`，做一些设置，如Tab Size等，以及这个插件(C#...)的一些设置。
