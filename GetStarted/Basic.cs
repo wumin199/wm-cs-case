@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace GetStarted
 {
@@ -118,5 +119,32 @@ namespace GetStarted
       autoResetEvent.Set(); // 发送信号
     }
   }
+
+
+
+  public class AsyncTaskExample
+  {
+    private async Task<int> PerformTaskWithResultAsync()
+    {
+      await Task.Delay(1000); // 模拟异步操作
+      return 42; // 返回结果
+    }
+
+    public async void Button_Click(object sender, EventArgs e)
+    {
+      Console.WriteLine("Starting async operation...");
+      int result = await PerformTaskWithResultAsync();
+      Console.WriteLine($"Async operation completed with result: {result}");
+    }
+
+    public void TestAsyncMethod()
+    {
+      Button_Click(this, EventArgs.Empty);
+      Console.WriteLine("Button_Click method has been called.");
+    }
+  }
+
+
+
 }
 

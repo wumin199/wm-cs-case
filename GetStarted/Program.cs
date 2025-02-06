@@ -10,8 +10,11 @@ class Program
 
     // GetStarted.ThreadStaticExample.Run();
 
-    var threadExample = new ThreadExample();
-    threadExample.Run();
+    // var threadExample = new ThreadExample();
+    // threadExample.Run();
+
+    var asyncTaskExample = new AsyncTaskExample();
+    asyncTaskExample.TestAsyncMethod();
   }
 }
 
