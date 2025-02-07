@@ -8,13 +8,15 @@ class Program
   {
     Console.WriteLine("Hello World, That's Get Started!");
 
+    GetStarted.Basic.ReadLine();
+
     // GetStarted.ThreadStaticExample.Run();
 
     // var threadExample = new ThreadExample();
     // threadExample.Run();
 
-    var asyncTaskExample = new AsyncTaskExample();
-    asyncTaskExample.TestAsyncMethod();
+    // var asyncTaskExample = new AsyncTaskExample();
+    // asyncTaskExample.TestAsyncMethod();
   }
 }
 

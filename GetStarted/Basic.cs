@@ -6,6 +6,17 @@ namespace GetStarted
 {
   public class Basic
   {
+    public static void ReadLine()
+    {
+      Console.WriteLine("What is your name?");
+      var name = Console.ReadLine();
+      var currentDate = DateTime.Now;
+      Console.WriteLine($"{Environment.NewLine}Hello, {name}, on {currentDate:d} at {currentDate:t}!");
+      Console.Write($"{Environment.NewLine}Press Enter to exit...");
+      // Console.Read();
+      Console.ReadKey(true);
+    }
+
     public string Greet(string name)
     {
       return $"Hello, {name}!";

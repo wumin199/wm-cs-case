@@ -114,8 +114,6 @@ Solution Expoler的介绍：[project-management](https://code.visualstudio.com/d
 
 ### Build
 
-
-
 Debug之前需要先编译。
 
 编译方法有：`.NET:Build` or `tasks.json` or 脚本/指令编译
@@ -177,7 +175,9 @@ dotnet build是dotnet cli的一部分， msbuild需要另外安装。
 > 对于目标版本低于 .NET Core 3.0 的可执行项目，通常不会将 NuGet 中的库依赖项复制到输出文件夹。 而是在运行时从 NuGet 全局包文件夹中对其进行解析。 考虑到这一点，dotnet build 的产品还未准备好转移到另一台计算机进行运行。 要创建可部署的应用程序版本，需要发布该应用程序（例如，使用 dotnet publish 命令）
 > dotnet build 使用 MSBuild 生成项目，因此它支持并行生成和增量生成。 有关详细信息，请参阅增量生成
 > MSBuild 和msvc不一样，msbuild处理的是`.csproj`
-> 
+> 并非所有的 dotnet CLI 命令都是基于 MSBuild 的，但许多与项目构建和管理相关的命令确实依赖于 MSBuild
+> 这些命令使用 MSBuild 来执行其操作： `dotnet build`, `dotnet clean`, `dotnet publish`, `dotnet pack`, `dotnet test`, 这些命令在内部调用 MSBuild 来执行实际的构建、清理、发布、打包和测试操作，因此可以接受 MSBuild 参数来定制其行为。
+> 这些命令不依赖于 MSBuild，而是直接由 dotnet CLI 实现: `dotnet new`, `dotnet restore`, `dotnet run`, `dotnet tool`, `dotnet add`, `dotnet remove`, `dotnet list`
 
 ```bash
 dotnet build -h|--help
@@ -187,10 +187,18 @@ dotnet build
 cd wm-cs-case.sln
 dotnet build -c Release -o ./bin -f net8.0 # 如果solution有多个项目，则建议不要用-o
 dotnet build -c Release -f net8.0
+
+
+dotnet clean --configuration Release
+dotnet clean --configuration Debug
+
+
+#
+# msbuild相关
+#
+# /p:表示传递msbuild的相关参数，因为dotnet clean是基于msbuild的，所以可以传递它的参数
 msbuild MyProject.csproj /p:Configuration=Release
-
 dotnet clean C:/Users/wumin/Desktop/test/wm-cs-case/wm-cs-case.sln /property:GenerateFullPaths=true /consoleloggerparameters:NoSummary /p:Configuration=Debug /p:Platform="Any CPU"
-
 dotnet build C:/Users/wumin/Desktop/test/wm-cs-case/wm-cs-case.sln /property:GenerateFullPaths=true /consoleloggerparameters:NoSummary /p:Configuration=Debug /p:Platform="Any CPU"
 ```
 
@@ -324,10 +332,61 @@ see: [Debugging C# apps](https://youtu.be/VuIOk3DqKgc)
 }
 ```
 
+### Build+Run
+
+```shell
+# 仅构建项目
+dotnet build -c Release
+
+# 构建并运行项目
+dotnet run --configuration Release --project GetStarted
+dotnet run --configuration Debug --project GetStarted
+dotnet run --configuration Debug
+
+# 我们可以仅build，如何cd过去run就行了
+```
 
 ### Test
 
 [Testing with C# Dev Kit](https://code.visualstudio.com/docs/csharp/testing)
+
+[在 .NET 中测试](https://learn.microsoft.com/zh-cn/dotnet/navigate/devops-testing/)
+
+### Publish
+
+[教程：使用 Visual Studio Code 发布 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/publishing-with-visual-studio-code)
+
+
+默认的构建配置为 Release，适用于在生产环境中运行的已部署站点。 发布版本配置的输出包含非常少的符号调试信息，并已完全优化。
+
+```bash
+
+# 这个不会打包dotnet环境，需要平台安装好.NET环境
+dotnet publish #  输出see:  bin/Release/net8.0/publish
+dotnet publish -c Release -o ./publish # 多项目，不能打包在同一个目录下！！
+
+# 这个会把dotnet环境都打包进去
+dotnet publish -c Release -r win-x64 -o ./publish --self-contained # 多项目，不能打包在同一个目录下
+```
+
+
+[.NET 应用程序发布概述](https://learn.microsoft.com/zh-cn/dotnet/core/deploying/)
+[.NET 分发打包](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
+
+默认情况下，发布过程会创建依赖于框架的部署，这是一种部署，其中已发布的应用程序在安装了 .NET 运行时的计算机上运行
+
+### 创建类库
+
+[使用 Visual Studio Code 创建 .NET 类库](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/library-with-visual-studio-code?pivots=dotnet-8-0)
+
+
+
+
+### DevOps
+
+[GitHub Actions 和 .NET](https://learn.microsoft.com/zh-cn/dotnet/devops/github-actions-overview)
+
+[在持续集成 (CI) 环境中使用 .NET SDK](https://learn.microsoft.com/zh-cn/dotnet/devops/dotnet-cli-and-continuous-integration?tabs=powershell)
 
 ## 参考资料
 
@@ -336,17 +395,10 @@ see: [Debugging C# apps](https://youtu.be/VuIOk3DqKgc)
   - [Introductory Videos for C# in VS Code](https://code.visualstudio.com/docs/csharp/introvideos-csharp)(左侧菜单栏有全部C# with VSCode，里面有各类视频包括debug等)
   - [Getting Started with C# in VS Code](https://code.visualstudio.com/docs/csharp/get-started)（只教如何用Vscode编写C#，不教C#本身）
   - [Working with C#](https://code.visualstudio.com/docs/languages/csharp)
-  - [教程：使用 Visual Studio Code 创建 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/with-visual-studio-code)
+  - [教程：使用 Visual Studio Code 创建 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/with-visual-studio-code)（包含创建、调试、发布、创建库、单元测试、安装、发布等）
 
-- [.NET 基础知识文档](https://learn.microsoft.com/zh-cn/dotnet/fundamentals/)
-  - [.NET 入门](https://learn.microsoft.com/zh-cn/dotnet/core/get-started)
-  - [.NET 分发打包](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
-  - [.NET 应用程序发布概述](https://learn.microsoft.com/zh-cn/dotnet/core/distribution-packaging)
+- [.NET 文档](https://learn.microsoft.com/zh-cn/dotnet/)(最全)
+  - [.NET 基础知识文档](https://learn.microsoft.com/zh-cn/dotnet/fundamentals/)(含介绍、安装、入门、Vscode、迁移、部署、序列化、CLR(反射..)、事件异常和文件IO、依赖注入、日志)
   - [.NET CLI 概述](https://learn.microsoft.com/zh-cn/dotnet/core/tools/)
-  - [教程：使用 Visual Studio Code 创建 .NET 控制台应用程序](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/with-visual-studio-code)
-- [C# 文档](https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/)
-  - [C# 语法](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference)(基础数据类型等)
-  - [C# 类型系统](https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/)
-  - [强制转换和类型转换（C# 编程指南）](https://learn.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/casting-and-type-conversions)
-  - [内置类型（C# 参考）](https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/overview)
-- [Add .gitignore for C Sharp](https://github.com/github/gitignore/pull/4430/files)
+  - [C# 文档](https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/)(C#学习主要走这个程序)
+  - [Add .gitignore for C Sharp](https://github.com/github/gitignore/pull/4430/files)
