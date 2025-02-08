@@ -1,6 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 
 namespace GetStarted
 {
@@ -131,8 +134,6 @@ namespace GetStarted
     }
   }
 
-
-
   public class AsyncTaskExample
   {
     private async Task<int> PerformTaskWithResultAsync()
@@ -155,7 +156,40 @@ namespace GetStarted
     }
   }
 
+  [Serializable]
+  public class Person
+  {
+    public string Name { get; set; }
+    public int Age { get; set; }
+  }
 
+  public class SerializationHelper
+  {
+    public static void SerializePerson(string filePath, Person person)
+    {
 
+      var options = new JsonSerializerOptions { WriteIndented = true };
+      string jsonString = JsonSerializer.Serialize(person, options);
+      File.WriteAllText(filePath, jsonString);
+      ;
+    }
+
+    public static Person DeserializePerson(string filePath)
+    {
+      string jsonString = File.ReadAllText(filePath);
+      return JsonSerializer.Deserialize<Person>(jsonString) ?? new Person();
+    }
+  }
+
+  public class TestReflector
+  {
+    public static void Test1()
+    {
+      var person = new Person { Name = "Alice", Age = 30 };
+      SerializationHelper.SerializePerson("person.json", person);
+      Person newPerson = SerializationHelper.DeserializePerson("person.json");
+      Console.WriteLine($"Name: {newPerson.Name}, Age: {newPerson.Age}");
+    }
+  }
 }
 

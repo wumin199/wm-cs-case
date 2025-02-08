@@ -8,7 +8,7 @@ class Program
   {
     Console.WriteLine("Hello World, That's Get Started!");
 
-    GetStarted.Basic.ReadLine();
+    // GetStarted.Basic.ReadLine();
 
     // GetStarted.ThreadStaticExample.Run();
 
@@ -17,6 +17,8 @@ class Program
 
     // var asyncTaskExample = new AsyncTaskExample();
     // asyncTaskExample.TestAsyncMethod();
+
+    TestReflector.Test1();
   }
 }
 
