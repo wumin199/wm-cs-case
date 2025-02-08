@@ -18,7 +18,15 @@ class Program
     // var asyncTaskExample = new AsyncTaskExample();
     // asyncTaskExample.TestAsyncMethod();
 
-    TestReflector.Test1();
+    // TestReflector.Test1();
+
+    // var test_del = new TestDelegate();
+    // test_del.Test1();
+
+
+    // TestAsyncHelper.ExampleUsage();
+    // TestAsyncHelper.ExampleUsageWithoutExceptionHandling();
+    TestAsyncHelper.CheckRunningTasks();
   }
 }
 

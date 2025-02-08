@@ -141,6 +141,8 @@ namespace GetStarted
       return 42; // 返回结果
     }
 
+
+    // Action是delegate的意思，一般用作回调函数等
     public async void Button_Click(object sender, EventArgs e)
     {
       Console.WriteLine("Starting async operation...");
@@ -152,6 +154,100 @@ namespace GetStarted
     {
       Button_Click(this, EventArgs.Empty);
       Console.WriteLine("Button_Click method has been called.");
+    }
+  }
+
+
+  public class AsyncHelper
+  {
+    private static List<Task> TaskList = new List<Task>();
+    public async static void ExecuteAsync(Action async, Action<Exception> finish)
+    {
+      var t = Task.Run(async);
+      TaskList.Add(t);
+      try
+      {
+        await t;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine("Exception in AsyncHelper: " + ex.Message);
+      }
+      finally
+      {
+        if (finish != null)
+          finish.Invoke(t.Exception); // but in finish method
+        TaskList.Remove(t);
+      }
+    }
+
+    public static void ExecuteAsync(Action method)
+    {
+      ExecuteAsync(method, null);
+    }
+
+    public static bool HasRunningTasks()
+    {
+      return TaskList.Any(t => t.Status == TaskStatus.Running);
+    }
+  }
+
+  public class TestAsyncHelper
+  {
+    public static void ExampleUsage()
+    {
+      Action asyncTask = () =>
+      {
+        Console.WriteLine("Async task started.");
+        Thread.Sleep(1000);
+        Console.WriteLine("Async task completed.");
+      };
+
+      Action<Exception> finishCallback = (ex) =>
+      {
+        if (ex != null)
+        {
+          Console.WriteLine("Exception in async task: " + ex.Message);
+        }
+        else
+        {
+          Console.WriteLine("Async task finished successfully.");
+        }
+      };
+
+      AsyncHelper.ExecuteAsync(asyncTask, finishCallback);
+      Thread.Sleep(2000);
+      Console.WriteLine("done");
+    }
+
+    public static void ExampleUsageWithoutExceptionHandling()
+    {
+      Action asyncTask = () =>
+      {
+        Thread.Sleep(1000);
+        Console.WriteLine("Async task completed.");
+      };
+
+      AsyncHelper.ExecuteAsync(asyncTask);
+      Thread.Sleep(2000);
+      Console.WriteLine("done");
+    }
+
+    public static void CheckRunningTasks()
+    {
+      Action asyncTask = () =>
+      {
+        Thread.Sleep(1000);
+        Console.WriteLine("Async task completed.");
+      };
+
+      AsyncHelper.ExecuteAsync(asyncTask);
+      while (AsyncHelper.HasRunningTasks())
+      {
+        Console.WriteLine("Waiting for async task to complete...");
+        Thread.Sleep(100);
+      }
+      Console.WriteLine("All async tasks have been completed.");
     }
   }
 
@@ -188,6 +284,26 @@ namespace GetStarted
       SerializationHelper.SerializePerson("person.json", person);
       Person newPerson = SerializationHelper.DeserializePerson("person.json");
       Console.WriteLine($"Name: {newPerson.Name}, Age: {newPerson.Age}");
+    }
+  }
+
+  public class TestDelegate()
+  {
+    // 和 C++的std::function类似
+    public delegate void MyDelegate(string message);
+    public class MyClass
+    {
+      public void MyMethod(string message)
+      {
+        Console.WriteLine(message);
+      }
+    }
+
+    public void Test1()
+    {
+      var my_class = new MyClass();
+      MyDelegate my_delegate = my_class.MyMethod;
+      my_delegate("Hello, delegate!");
     }
   }
 }
