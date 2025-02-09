@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibProject", "ClassLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformApp1", "WinformApp1\WinformApp1.csproj", "{5B21C623-59C4-4AA1-AE18-D4C8B5D38455}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSTest", "MSTest\MSTest.csproj", "{BD4528CA-A7BF-4FB2-B773-716CE225DB6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5B21C623-59C4-4AA1-AE18-D4C8B5D38455}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B21C623-59C4-4AA1-AE18-D4C8B5D38455}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B21C623-59C4-4AA1-AE18-D4C8B5D38455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4528CA-A7BF-4FB2-B773-716CE225DB6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4528CA-A7BF-4FB2-B773-716CE225DB6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4528CA-A7BF-4FB2-B773-716CE225DB6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4528CA-A7BF-4FB2-B773-716CE225DB6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

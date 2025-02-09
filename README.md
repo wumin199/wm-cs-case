@@ -363,11 +363,7 @@ dotnet run --configuration Debug
 # 我们可以仅build，如何cd过去run就行了
 ```
 
-### Test
 
-[Testing with C# Dev Kit](https://code.visualstudio.com/docs/csharp/testing)
-
-[在 .NET 中测试](https://learn.microsoft.com/zh-cn/dotnet/navigate/devops-testing/)
 
 ### Publish
 
@@ -397,7 +393,17 @@ dotnet publish -c Release -r win-x64 -o ./publish --self-contained # 多项目�
 [使用 Visual Studio Code 创建 .NET 类库](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/library-with-visual-studio-code?pivots=dotnet-8-0)
 
 
+### Test
 
+[教程：使用 Visual Studio Code 测试 .NET 类库](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/testing-library-with-visual-studio-code)
+
+[Testing with C# Dev Kit](https://code.visualstudio.com/docs/csharp/testing)
+
+[在 .NET 中测试](https://learn.microsoft.com/zh-cn/dotnet/navigate/devops-testing/)
+
+```bash
+dotnet test MSTest/MSTest.csproj --configuration Release
+```
 
 ### DevOps
 
