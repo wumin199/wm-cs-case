@@ -2,6 +2,7 @@
 using System.Threading;
 using GetStarted;
 using TestLib;
+using TestNuGet;
 
 class Program
 {
@@ -30,8 +31,12 @@ class Program
     // TestAsyncHelper.CheckRunningTasks();
 
 
-    var test = new TestBasic();
+    // var test = new TestBasic();
+    // test.Test1();
+
+    var test = new TestJson();
     test.Test1();
+
 
   }
 }

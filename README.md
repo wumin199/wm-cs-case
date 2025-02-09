@@ -405,6 +405,19 @@ dotnet publish -c Release -r win-x64 -o ./publish --self-contained # 多项目�
 dotnet test MSTest/MSTest.csproj --configuration Release
 ```
 
+### 使用和常见NuGet包
+
+[快速入门：使用 dotnet CLI 安装和使用包](https://learn.microsoft.com/zh-cn/nuget/quickstart/install-and-use-a-package-using-the-dotnet-cli?toc=%2Fdotnet%2Ffundamentals%2Ftoc.json&bc=%2Fdotnet%2Fbreadcrumb%2Ftoc.json)
+
+[NuGet 简介](https://learn.microsoft.com/zh-cn/nuget/what-is-nuget)
+
+
+可以借助VScode的Solution Explorer右键添加/删除NuGet包，也可以用指令添加
+
+```bash
+dotnet add package Newtonsoft.Json
+```
+
 ### DevOps
 
 [GitHub Actions 和 .NET](https://learn.microsoft.com/zh-cn/dotnet/devops/github-actions-overview)

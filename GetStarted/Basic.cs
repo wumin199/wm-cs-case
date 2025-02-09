@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
 using UtilityLibraries; // 需要先引入 UtilityLibraries 项目
+using Newtonsoft.Json;
 
 namespace GetStarted
 {
@@ -265,7 +266,7 @@ namespace GetStarted
     {
 
       var options = new JsonSerializerOptions { WriteIndented = true };
-      string jsonString = JsonSerializer.Serialize(person, options);
+      string jsonString = System.Text.Json.JsonSerializer.Serialize(person, options);
       File.WriteAllText(filePath, jsonString);
       ;
     }
@@ -273,7 +274,7 @@ namespace GetStarted
     public static Person DeserializePerson(string filePath)
     {
       string jsonString = File.ReadAllText(filePath);
-      return JsonSerializer.Deserialize<Person>(jsonString) ?? new Person();
+      return System.Text.Json.JsonSerializer.Deserialize<Person>(jsonString) ?? new Person();
     }
   }
 
@@ -344,4 +345,28 @@ namespace TestLib
 
   }
 
+}
+
+namespace TestNuGet
+{
+  public class Account
+  {
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+    public DateTime DOB { get; set; }
+  }
+  public class TestJson
+  {
+    public void Test1()
+    {
+      var account = new Account
+      {
+        Name = "John Doe",
+        Email = "wmin199@126.com",
+        DOB = new DateTime(1990, 5, 18, 0, 0, 0, DateTimeKind.Utc)
+      };
+      string json = JsonConvert.SerializeObject(account, Formatting.Indented);
+      Console.WriteLine(json);
+    }
+  }
 }
