@@ -34,10 +34,21 @@ class Program
     // var test = new TestBasic();
     // test.Test1();
 
-    var test = new TestJson();
+    // var test = new TestJson();
+    // test.Test1();
+
+    var test = new TestType();
     test.Test1();
+  }
 
 
+  public void QuickTest()
+  {
+    var limit = 3;
+    int[] source = { 0, 1, 2, 3, 4, 5 };
+    var query = from item in source
+                where item <= limit
+                select item;
   }
 }
 

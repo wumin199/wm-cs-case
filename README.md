@@ -392,7 +392,6 @@ dotnet publish -c Release -r win-x64 -o ./publish --self-contained # 多项目�
 
 [使用 Visual Studio Code 创建 .NET 类库](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/library-with-visual-studio-code?pivots=dotnet-8-0)
 
-
 ### Test
 
 [教程：使用 Visual Studio Code 测试 .NET 类库](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/testing-library-with-visual-studio-code)
@@ -409,13 +408,30 @@ dotnet test MSTest/MSTest.csproj --configuration Release
 
 [快速入门：使用 dotnet CLI 安装和使用包](https://learn.microsoft.com/zh-cn/nuget/quickstart/install-and-use-a-package-using-the-dotnet-cli?toc=%2Fdotnet%2Ffundamentals%2Ftoc.json&bc=%2Fdotnet%2Fbreadcrumb%2Ftoc.json)
 
+[快速入门：使用 dotnet CLI 创建和发布包](https://learn.microsoft.com/zh-cn/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli)
+
 [NuGet 简介](https://learn.microsoft.com/zh-cn/nuget/what-is-nuget)
+[NuGet.org 概述](https://learn.microsoft.com/zh-cn/nuget/nuget-org/overview-nuget-org)
+
+[Wisteria.Utils](https://www.nuget.org/packages/Wisteria.Utils/)
 
 
 可以借助VScode的Solution Explorer右键添加/删除NuGet包，也可以用指令添加
 
 ```bash
+# 下载
 dotnet add package Newtonsoft.Json
+
+# 制作
+dotnet clean ./AppLogger/AppLogger.csproj -c Release
+dotnet build -c Release ./AppLogger/AppLogger.csproj
+dotnet pack -c Release ./AppLogger/AppLogger.csproj
+
+# dotnet pack 先构建项目。 如果希望避免此行为，则传递 --no-build 选项。 此选项在持续集成 (CI) 生成方案中通常非常有用，你可以知道代码是之前生成的
+# cd ./AppLogger/bin/Release
+dotnet nuget push ./AppLogger/bin/Release/Wisteria.Utils.1.0.2.nupkg --api-key  --source https://api.nuget.org/v3/index.json
+
+
 ```
 
 ### DevOps

@@ -308,6 +308,42 @@ namespace GetStarted
       my_delegate("Hello, delegate!");
     }
   }
+
+  public class BaseC { }
+
+  public class DerivedC : BaseC { }
+
+  public class TestType
+  {
+    public void Test1()
+    {
+      object b = new BaseC();
+      Console.WriteLine(b is BaseC);  // output: True
+      Console.WriteLine(b is DerivedC);  // output: False
+
+      object d = new DerivedC();
+      Console.WriteLine(d is BaseC);  // output: True
+      Console.WriteLine(d is DerivedC); // output: True
+
+      int i = 27;
+      Console.WriteLine(i is System.IFormattable);  // output: True
+
+      object iBoxed = i;
+      Console.WriteLine(iBoxed is int);  // output: True
+      Console.WriteLine(iBoxed is long);  // output: False
+
+      int ii = 23;
+      object iiBoxed = ii;
+      int? jNullable = 7;
+      if (iiBoxed is int aa && jNullable is int bb)
+      {
+        Console.WriteLine(aa + bb);  // output 30
+      }
+    }
+
+  }
+
+
 }
 
 namespace TestLib

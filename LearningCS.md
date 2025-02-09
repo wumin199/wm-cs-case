@@ -1,11 +1,15 @@
 
 基础数据类型及转化、事件、委托、异常、异步编程
 
-单元测试、CICD、格式检查、创建类库、自动格式化
+单元测试、CICD、格式检查、创建类库、自动格式化、混合编程、类型转换、内置数据类型（值类型、引用类型）
 
+特殊修饰符(in/out/new/ref/readonly)
 
-https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/library-with-visual-studio-code?pivots=dotnet-8-0
+https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/ref
 
+https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/struct
+
+https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/
 
 参考资料：
 
@@ -18,3 +22,9 @@ https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/library-with-visual-stud
 2. dynamic	== System.Object
 3. 在新式计算机上，使用双精度数字比使用单精度数字更为常见
 4. decimal 类型的范围较小，但精度高于 double
+5. 强制类型转换：is/as/typeof, Giraffe g2 = (Giraffe)a
+6. struct是值类型，string/class/interface是引用类型
+7. readonly相当于C++的const
+8. class和struct
+   **struct**：值类型，存储在栈(stack)上，不支持继承，适用于小型数据结构。 简单理解就是类似int
+   **class**：引用类型，存储在堆(heap)上，支持继承，适用于大型数据结构。
