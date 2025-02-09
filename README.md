@@ -51,9 +51,24 @@ VSCode中的一些常见设置：
 
 `Ctrl + Shift + P` -> `Welcome: Open Walkthrough` -> `Get Started with C# Dev Kit`: 然后选择对应的操作
 
+解决方案(.sln)用作一个或多个项目的容器(多个文件夹，即各自文件夹下的.csproj)
+
 直接创建.NET项目:
 
 `Ctrl + Shift + P` -> `.NET:New Project` -> `Console app`
+
+这会自动挡生成一个文件夹下的 `wm-cs-case.sln` 的解决方案,同时在.sln中添加上这个项目的一些信息。
+
+可以继续添加其他项目，一个解决方案可以包含多个项目。
+
+如果是用指令添加项目，则需要更新解决方案：
+
+```shell
+dotnet new classlib -o ClassLibProject
+dotnet sln add classLibProject/ClassLibProject.csproj
+
+dotnet build
+```
 
 编译.NET项目：
 <!--  -->
@@ -103,6 +118,8 @@ Solution Expoler的介绍：[project-management](https://code.visualstudio.com/d
 <div style="display: flex; justify-content: center; align-items: center;">
   <img src="images/update_solution_explorer.png" alt="" style="width:50%;">
 </div>
+
+或者通过 `dotnet sln add`来添加项目到解决方案中
 
 运行单一文件方法：
 

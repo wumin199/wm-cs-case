@@ -1,7 +1,7 @@
 
 基础数据类型及转化、事件、委托、异常、异步编程
 
-单元测试、CICD、格式检查、创建类库
+单元测试、CICD、格式检查、创建类库、自动格式化
 
 
 https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/library-with-visual-studio-code?pivots=dotnet-8-0

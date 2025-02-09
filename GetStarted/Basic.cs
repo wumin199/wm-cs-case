@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
+using UtilityLibraries; // 需要先引入 UtilityLibraries 项目
 
 namespace GetStarted
 {
@@ -308,3 +309,39 @@ namespace GetStarted
   }
 }
 
+namespace TestLib
+{
+  public class TestBasic
+  {
+    int row = 0;
+    void ResetConsole()
+    {
+      if (row > 0)
+      {
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+      }
+      Console.Clear();
+      Console.WriteLine($"{Environment.NewLine}Press <Enter> only to exit; otherwise, enter a string and press <Enter>:{Environment.NewLine}");
+      row = 3;
+    }
+
+    public void Test1()
+    {
+      do
+      {
+        if (row == 0 || row >= 25) ResetConsole();
+
+        string? input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input)) break;
+        Console.WriteLine($"Input: {input}");
+        Console.WriteLine($"Begins with uppercase? " +
+        $"{(input.StartsWithUpper() ? "Yes" : "No")}");
+        Console.WriteLine();
+        row += 3;
+      } while (true);
+    }
+
+  }
+
+}

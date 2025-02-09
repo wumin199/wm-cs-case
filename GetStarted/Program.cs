@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using GetStarted;
+using TestLib;
 
 class Program
 {
@@ -26,7 +27,12 @@ class Program
 
     // TestAsyncHelper.ExampleUsage();
     // TestAsyncHelper.ExampleUsageWithoutExceptionHandling();
-    TestAsyncHelper.CheckRunningTasks();
+    // TestAsyncHelper.CheckRunningTasks();
+
+
+    var test = new TestBasic();
+    test.Test1();
+
   }
 }
 
