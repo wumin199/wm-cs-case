@@ -4,7 +4,7 @@
 
 zh-cn/en-us
 
-## 20250210
+## feature1
 1. 依赖注入和通用设计原则
   [.NET 依赖项注入](https://learn.microsoft.com/zh-cn/dotnet/core/extensions/dependency-injection)， 
 
@@ -26,6 +26,10 @@ zh-cn/en-us
   .NET 中的依赖关系注入是框架的内置部分，与配置、日志记录和选项模式一样。
 
   see: `DIP.cs`
+
+  有了DI注入，是不是不怎么用静态类。多个服务，怎么注册使用。
+
+  DI的使用。类的数据成员变量，封装成DI注入方式。当然不是每个数据成员都要封装，而是类的重要数据成员！
 
 
   

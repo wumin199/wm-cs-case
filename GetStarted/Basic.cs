@@ -147,7 +147,8 @@ namespace GetStarted
     // Action是delegate的意思，一般用作回调函数等
     public async void Button_Click(object sender, EventArgs e)
     {
-      Console.WriteLine("Starting async operation...");
+      Thread.Sleep(5000);
+      Console.WriteLine("Starting async operation..."); // 这一句是同步的，await才是异步的
       int result = await PerformTaskWithResultAsync();
       Console.WriteLine($"Async operation completed with result: {result}");
     }
@@ -156,6 +157,7 @@ namespace GetStarted
     {
       Button_Click(this, EventArgs.Empty);
       Console.WriteLine("Button_Click method has been called.");
+      Task.Delay(10000).Wait();
     }
   }
 

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 
 #region test1
 
+// ClassA -> IClassB -> ClassC
+
 // 接口
 public interface IConsole
 {
@@ -137,7 +139,6 @@ internal sealed class ExampleTransientService : IExampleTransientService
   Guid IReportServiceLifetime.Id { get; } = Guid.NewGuid();
 }
 
-
 public interface IExampleScopedService : IReportServiceLifetime
 {
   ServiceLifetime IReportServiceLifetime.Lifetime => ServiceLifetime.Scoped;
@@ -199,23 +200,22 @@ public class Test2
     Console.WriteLine();
   }
 
-  public void Run(string[] args)
+  public async Task Run(string[] args)
   {
     HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
-    // builder.Services.AddTransient<IExampleTransientService, ExampleTransientService>();
-    // builder.Services.AddScoped<IExampleScopedService, ExampleScopedService>();
-    // builder.Services.AddSingleton<IExampleSingletonService, ExampleSingletonService>();
-    // builder.Services.AddTransient<ServiceLifetimeReporter>();
+    builder.Services.AddTransient<IExampleTransientService, ExampleTransientService>();
+    builder.Services.AddScoped<IExampleScopedService, ExampleScopedService>();
+    builder.Services.AddSingleton<IExampleSingletonService, ExampleSingletonService>();
+    builder.Services.AddTransient<ServiceLifetimeReporter>();
 
-    // using IHost host = builder.Build();
+    using IHost host = builder.Build();
 
-    // ExemplifyServiceLifetime(host.Services, "Lifetime 1");
-    // ExemplifyServiceLifetime(host.Services, "Lifetime 2");
+    ExemplifyServiceLifetime(host.Services, "Lifetime 1");
+    ExemplifyServiceLifetime(host.Services, "Lifetime 2");
 
-    // await host.RunAsync();
+    await host.RunAsync();
   }
-
 
 }
 

@@ -4,10 +4,11 @@ using GetStarted;
 using TestLib;
 using TestNuGet;
 using DIBasics;
+using System.Threading.Tasks;
 
 class Program
 {
-  static void Main()
+  static async Task Main(string[] args)
   {
     // Console.WriteLine("Hello World, That's Get Started!");
 
@@ -41,8 +42,11 @@ class Program
     // var test = new TestType();
     // test.Test1();
 
-    var test = new DIBasics.Example.Test1();
-    test.Run();
+    // var test = new DIBasics.Example.Test1();
+    // test.Run();
+
+    var test = new DIBasics.Example.Test2();
+    await test.Run(args);
   }
 
 
