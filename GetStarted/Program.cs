@@ -1,14 +1,15 @@
-﻿using System;
+using System;
 using System.Threading;
 using GetStarted;
 using TestLib;
 using TestNuGet;
+using DIBasics;
 
 class Program
 {
   static void Main()
   {
-    Console.WriteLine("Hello World, That's Get Started!");
+    // Console.WriteLine("Hello World, That's Get Started!");
 
     // GetStarted.Basic.ReadLine();
 
@@ -37,8 +38,11 @@ class Program
     // var test = new TestJson();
     // test.Test1();
 
-    var test = new TestType();
-    test.Test1();
+    // var test = new TestType();
+    // test.Test1();
+
+    var test = new DIBasics.Example.Test1();
+    test.Run();
   }
 
 
@@ -51,4 +55,3 @@ class Program
                 select item;
   }
 }
-

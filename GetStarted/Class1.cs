@@ -1,4 +1,4 @@
-﻿namespace GetStarted;
+namespace GetStarted;
 
 public class Class1
 {

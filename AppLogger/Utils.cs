@@ -1,4 +1,4 @@
-﻿namespace Wisteria.Utils;
+namespace Wisteria.Utils;
 
 public static class StringLibrary
 {

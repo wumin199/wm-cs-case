@@ -18,8 +18,15 @@ public class UnitTest1
   [TestMethod]
   public void TestDoesNotStartWithUpper()
   {
-    string[] words = [ "alphabet", "zebra", "abc", "αυτοκινητοβιομηχανία", "государство",
-                               "1234", ".", ";", " " ];
+    string[] words = ["alphabet",
+      "zebra",
+      "abc",
+      "αυτοκινητοβιομηχανία",
+      "государство",
+      "1234",
+      ".",
+      ";",
+      " "];
     foreach (var word in words)
     {
       bool result = word.StartsWithUpper();
@@ -42,4 +49,3 @@ public class UnitTest1
     }
   }
 }
-
