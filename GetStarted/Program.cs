@@ -45,8 +45,14 @@ class Program
     // var test = new DIBasics.Example.Test1();
     // test.Run();
 
-    var test = new DIBasics.Example.Test2();
-    await test.Run(args);
+    // var test = new DIBasics.Example.Test2();
+    // await test.Run(args);
+
+    var test = new DIBasics.Example.Test3();
+    // test.test3();
+
+    var test = new DIBasics.Example.Test4();
+    test.Run();
   }
 
 

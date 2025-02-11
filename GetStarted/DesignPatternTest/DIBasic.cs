@@ -220,3 +220,171 @@ public class Test2
 }
 
 #endregion
+
+#region test3
+
+// 测试生命周期
+public class TestService
+{
+  public string Name { get; set; }
+  public void SayHi()
+  {
+    Console.WriteLine(Name);
+  }
+}
+
+public class Test3
+{
+  public void test1()
+  {
+
+    ServiceCollection services = new ServiceCollection();
+    services.AddTransient<TestService>();
+    using (var sp = services.BuildServiceProvider())
+    {
+      TestService t1 = sp.GetService<TestService>();
+      t1.Name = "SimonWu";
+      t1.SayHi();
+      TestService t2 = sp.GetService<TestService>();
+      t2.Name = "SimonWu";
+      t2.SayHi();
+      Console.WriteLine(Object.ReferenceEquals(t1, t2));//False
+    }
+  }
+
+  public void test2()
+  { // 单例模式
+    ServiceCollection services = new ServiceCollection();
+    services.AddSingleton<TestService>();
+    using (var sp = services.BuildServiceProvider())
+    {
+      TestService t1 = sp.GetService<TestService>();
+      t1.Name = "SimonWu";
+      t1.SayHi();
+      TestService t2 = sp.GetService<TestService>();
+      t2.Name = "Hillo";
+      t2.SayHi();
+      Console.WriteLine(Object.ReferenceEquals(t1, t2));//True
+    }
+  }
+
+  public void test3()
+  {
+    ServiceCollection services = new ServiceCollection();
+    services.AddScoped<TestService>();
+    using (var sp = services.BuildServiceProvider())
+    {
+      TestService t1, t2, t3;
+      using (IServiceScope scope = sp.CreateScope())
+      {
+        t1 = scope.ServiceProvider.GetService<TestService>();
+        t1.Name = "SimonWu";
+        t1.SayHi();
+
+        t2 = scope.ServiceProvider.GetService<TestService>();
+        t2.Name = "Hillo";
+        t2.SayHi();
+        Console.WriteLine(Object.ReferenceEquals(t1, t2));//True
+      }
+
+      using (IServiceScope scope = sp.CreateScope())
+      {
+        t3 = scope.ServiceProvider.GetService<TestService>();
+        t3.Name = "Hillo";
+        t3.SayHi();
+        Console.WriteLine(Object.ReferenceEquals(t1, t3));//False
+      }
+    }
+  }
+}
+
+
+#endregion
+
+
+#region test4
+
+class Controller
+{
+  private readonly ILog log;
+  private readonly IStorage storage;
+  public Controller(ILog log, IStorage storage)//构造函数注入
+  {
+    this.log = log;
+    this.storage = storage;
+  }
+
+  public void Test()
+  {
+    log.Log("开始上传");
+    storage.Save("asdkks", "1.txt");
+    log.Log("上传完毕");
+  }
+}
+
+interface ILog
+{
+  public void Log(string msg);
+}
+
+class LogImpl : ILog
+{
+  public void Log(string msg)
+  {
+    Console.WriteLine("日志：" + msg);
+  }
+}
+
+interface IConfig
+{
+  public string GetValue(string name);
+}
+
+class ConfigImpl : IConfig
+{
+  public string GetValue(string name)
+  {
+    return "hello";
+  }
+}
+
+interface IStorage
+{
+  public void Save(string content, string name);
+}
+
+class StorageImpl : IStorage
+{
+  private readonly IConfig _config;
+  public StorageImpl(IConfig config)//构造函数注入,当DI创建StorageImpl时候，框架自动创建IConfig服务
+  {
+    _config = config;
+  }
+
+  public void Save(string content, string name)
+  {
+    string server = _config.GetValue("server");
+    Console.WriteLine($"向服务器{server}的文件名{name}上传{content}");
+  }
+}
+
+public class Test4
+{
+  public void Run()
+  {
+    ServiceCollection services = new ServiceCollection();
+    services.AddScoped<ILog, LogImpl>();
+    services.AddScoped<IConfig, ConfigImpl>();
+    services.AddScoped<IStorage, StorageImpl>();
+    services.AddScoped<Controller>();
+
+    using (var sp = services.BuildServiceProvider())
+    {
+      var controller = sp.GetService<Controller>();
+      controller.Test();
+    }
+    Console.ReadKey();
+  }
+}
+
+#endregion

@@ -25,6 +25,9 @@ https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/
 5. 强制类型转换：is/as/typeof, Giraffe g2 = (Giraffe)a
 6. struct是值类型，string/class/interface是引用类型
 7. readonly相当于C++的const
+   1. private readonly可以和一般的属性进行区分。防止被修改
 8. class和struct
    **struct**：值类型，存储在栈(stack)上，不支持继承，适用于小型数据结构。 简单理解就是类似int
    **class**：引用类型，存储在堆(heap)上，支持继承，适用于大型数据结构。
+
+9.  internal 不想被其他程序集使用，sealed不想被集成（重写）

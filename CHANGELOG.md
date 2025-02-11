@@ -27,12 +27,21 @@ zh-cn/en-us
 
   see: `DIP.cs`
 
-  有了DI注入，是不是不怎么用静态类。多个服务，怎么注册使用。
+  用了依赖注入，就用依赖注入来获得单例服务，不用手动用静态类来常见单例模式了。
+  
+  
+  多个服务，怎么注册使用。
 
   DI的使用。类的数据成员变量，封装成DI注入方式。当然不是每个数据成员都要封装，而是类的重要数据成员！
 
+  AddTransit: 临时变量
+  AddScoped：区域变量，类似 {}同一个作用域就是同一个类
+  AddSingleton: 全局变量，单例模式
 
-  
+  用法可以参考：DIBasics.Example.Test3(); Test1和2的案例不是很好。 [C#依赖注入3种实现方法](https://blog.csdn.net/blu_e__heart/article/details/135725766)
 
+  // 只有建構式時會給值，所以可以順手加上 readonly 防止被變動
+    private readonly ISpell _spell;
+  加readonly 可以和一般的属性区分
 
-
+  不懂的地方，如果我需要输入一般的参数，怎么混合使用？
