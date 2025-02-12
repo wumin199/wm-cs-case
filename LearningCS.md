@@ -5,11 +5,9 @@
 
 特殊修饰符(in/out/new/ref/readonly)
 
-https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/ref
+https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/reference-types
 
-https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/struct
-
-https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/
+linq
 
 参考资料：
 
@@ -26,8 +24,9 @@ https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/types/
 6. struct是值类型，string/class/interface是引用类型
 7. readonly相当于C++的const
    1. private readonly可以和一般的属性进行区分。防止被修改
+   2. public readonly struct Coord;   var a = Coord(1,2); a.x = 5 (不可以)， a = b（不可以）  
 8. class和struct
-   **struct**：值类型，存储在栈(stack)上，不支持继承，适用于小型数据结构。 简单理解就是类似int
+   **struct**：值类型，存储在栈(stack)上，不支持继承，适用于小型数据结构。 简单理解就是类似int。 如果侧重于类型的行为，请考虑定义一个类。结构具有类类型的大部分功能。 结构类型不能从其他类或结构类型继承，也不能作为类的基础类型。 但是，结构类型可以实现接口。
    **class**：引用类型，存储在堆(heap)上，支持继承，适用于大型数据结构。
 
 9.  internal 不想被其他程序集使用，sealed不想被集成（重写）
