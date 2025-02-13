@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+
+    <!--  -->
+    <!-- NuGet Metadata -->
+    <!--  -->
+    <PackageId>Wisteria.Utils</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Title>AppLogger</Title>
+    <!-- testing/staging/production -->
+    <!-- alpha/beta/rc/stable -->
+    <!-- 1.0.1-testing -->
+    <Version>1.0.2</Version>
+    <Authors>wumin199</Authors>
+    <Company>Wisteria</Company>
+    <Description>Tiny and Handy logger</Description>
+    <!-- build时自动生成NuGet包 == donet pack -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="docs\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>
