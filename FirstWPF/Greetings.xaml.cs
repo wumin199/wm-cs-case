@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,4 +20,16 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+  private void Display_Click(object sender, RoutedEventArgs e)
+  {
+    if (HelloButton.IsEnabled == true)
+    {
+      MessageBox.Show("Hello.");
+    }
+    else if (GoodByeButton.IsEnabled == true)
+    {
+      MessageBox.Show("Goodbye.");
+    }
+  }
 }
