@@ -19,6 +19,9 @@
 
 ### 依赖属性
 
+
+[WPF - Dependency Properties](https://www.tutorialspoint.com/wpf/wpf_dependency_properties.htm)
+
 [依赖项属性概述 （WPF .NET）](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/properties/dependency-properties-overview?view=netdesktop-8.0)
 
 [DependencyProperty 类](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.dependencyproperty?view=windowsdesktop-9.0)
@@ -55,3 +58,4 @@ dotnet run
 
 - [教程：使用 C 创建 WPF 应用程序](https://learn.microsoft.com/zh-cn/visualstudio/get-started/csharp/tutorial-wpf)(拖拽控件)
 - [教程：使用 .NET 创建新的 WPF 应用](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/get-started/create-app-visual-studio?view=netdesktop-8.0)(直接编写xaml)
+- [WPF-教程](https://www.tutorialspoint.com/wpf/index.htm)
