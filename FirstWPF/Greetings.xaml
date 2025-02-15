@@ -5,17 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FirstWPF"
         mc:Ignorable="d"
-        Title="Greetings
-        " Height="450" Width="800">
-  <Grid>
+        Title="Name" Height="180" Width="260">
+  <Grid Margin="10,10,10,10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="27*"/>
-      <ColumnDefinition Width="373*"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
-    <TextBox HorizontalAlignment="Left" Margin="28,51,0,0" TextWrapping="Wrap" Text="Select a message option and then choose the Display button." VerticalAlignment="Top" Width="472" Grid.Column="1"/>
-    <RadioButton x:Name="HelloButton" Content="Hello" HorizontalAlignment="Left" Margin="54,167,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Column="1"/>
-    <RadioButton x:Name="GoodByeButton" Content="Goodbye" HorizontalAlignment="Left" Margin="287,163,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-    <Button x:Name="Display" Content="Button" HorizontalAlignment="Left" Margin="249,249,0,0" VerticalAlignment="Top" Click="Display_Click" Grid.Column="1"/>
 
+    <!--<Label>Names</Label>-->
+    <!--<Label Content="Names"></Label>-->
+    <Label Grid.Row="0" Grid.Column="0">Names</Label>
+    <ListBox Grid.Row="1" x:Name="lstNames" />
+    <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,0,0,0" Orientation="Vertical" >
+      <TextBox x:Name="txtName" />
+      <Button x:Name="btnAdd" Margin="0,5,0,0" Content="Add Name" Click="ButtonAddName_Click" ></Button>
+    </StackPanel>
   </Grid>
+
 </Window>

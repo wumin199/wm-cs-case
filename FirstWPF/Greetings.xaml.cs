@@ -21,15 +21,12 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-  private void Display_Click(object sender, RoutedEventArgs e)
+  private void ButtonAddName_Click(object sender, RoutedEventArgs e)
   {
-    if (HelloButton.IsEnabled == true)
+      if (!string.IsNullOrWhiteSpace(txtName.Text) && !lstNames.Items.Contains(txtName.Text))
     {
-      MessageBox.Show("Hello.");
-    }
-    else if (GoodByeButton.IsEnabled == true)
-    {
-      MessageBox.Show("Goodbye.");
+      lstNames.Items.Add(txtName.Text);
+      txtName.Clear();
     }
   }
 }
