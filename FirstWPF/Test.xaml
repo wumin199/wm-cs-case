@@ -4,19 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FirstWPF"
-        xmlns:views ="clr-namespace:FirstWPF.Tutorial.DependencyPropertity"
-        xmlns:re ="clr-namespace:FirstWPF.Tutorial.RouteEvent"
+        xmlns:views="clr-namespace:FirstWPF.Tutorial.DependencyPropertity"
+        xmlns:re="clr-namespace:FirstWPF.Tutorial.RouteEvent"
         mc:Ignorable="d"
         ButtonBase.Click="RouteWindow_Click"
-        Title="Test" Height="450" Width="800">
+        Title="Test"
+        Height="450"
+        Width="800">
   <Grid>
     <TabControl Margin="5">
       <TabItem Header="临时测试">
         <Grid>
         </Grid>
       </TabItem>
-      <TabItem Header="依赖属性" Height="19" VerticalAlignment="Bottom">
-        <Grid RenderTransformOrigin="0.502,0.516" >
+      <TabItem Header="依赖属性"
+               Height="19"
+               VerticalAlignment="Bottom">
+        <Grid RenderTransformOrigin="0.502,0.516">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -27,19 +31,33 @@
           </Grid.ColumnDefinitions>
 
 
-          <Label Content="IsMouseOver是默认支持的依赖属性" Grid.Row="0" Grid.Column="0" Margin="10 10 10 10" />
-          <Button  Height = "40" Width = "175"  Content = "Dependency Property" Grid.Row="0" Grid.Column="1">
+          <Label Content="IsMouseOver是默认支持的依赖属性"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 Margin="10 10 10 10"/>
+          <Button  Height="40"
+                   Width="175"
+                   Content="Dependency Property"
+                   Grid.Row="0"
+                   Grid.Column="1">
             <Button.Style>
-              <Style TargetType = "{x:Type Button}">
+              <Style TargetType="{x:Type Button}">
                 <Style.Triggers>
-                  <Trigger Property = "IsMouseOver" Value = "True">
-                    <Setter Property = "Foreground" Value = "Red" />
+                  <Trigger Property="IsMouseOver"
+                           Value="True">
+                    <Setter Property="Foreground"
+                            Value="Red"/>
                   </Trigger>
                 </Style.Triggers>
               </Style>
             </Button.Style>
           </Button>
-          <views:NewTextBox SetText="SetText" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Width="200" Height="50" ></views:NewTextBox>
+          <views:NewTextBox SetText="SetText"
+                            Margin="0,0,0,0"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Width="200"
+                            Height="50"></views:NewTextBox>
         </Grid>
       </TabItem>
 
@@ -53,20 +71,269 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
           </Grid.ColumnDefinitions>
-          <StackPanel Grid.Column="0" Grid.Row="0" Margin="20,20,20,20" ButtonBase.Click="RouteStatckPanel_Click" >
+          <StackPanel Grid.Column="0"
+                      Grid.Row="0"
+                      Margin="20,20,20,20"
+                      ButtonBase.Click="RouteStatckPanel_Click">
             <StackPanel Margin="10">
-              <TextBlock Name="txt1" FontSize="18" Margin="5" Text="This is TextBlock1"/>
-              <TextBlock Name="txt2" FontSize="18" Margin="5" Text="This is TextBlock2"/>
-              <TextBlock Name="txt3" FontSize="18" Margin="5" Text="This is TextBlock3"/>
+              <TextBlock Name="txt1"
+                         FontSize="18"
+                         Margin="5"
+                         Text="This is TextBlock1"/>
+              <TextBlock Name="txt2"
+                         FontSize="18"
+                         Margin="5"
+                         Text="This is TextBlock2"/>
+              <TextBlock Name="txt3"
+                         FontSize="18"
+                         Margin="5"
+                         Text="This is TextBlock3"/>
             </StackPanel>
-            <Button Margin="10" Content="Click me" Width="80" Click="RouteBtn_Click" />
+            <Button Margin="10"
+                    Content="Click me"
+                    Width="80"
+                    Click="RouteBtn_Click"/>
           </StackPanel>
 
 
-          <re:MyCustomControl Grid.Column="1" Grid.Row="0" MyClick="MyCustomControl_MyClick" />
+          <re:MyCustomControl Grid.Column="1"
+                              Grid.Row="0"
+                              MyClick="MyCustomControl_MyClick"/>
 
         </Grid>
       </TabItem>
+
+      <TabItem Header="基础控件1">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="basicBtn"
+                    HorizontalAlignment="Left"
+                    Content="Click Me"
+                    Margin="10 10 10 10"
+                    VerticalAlignment="Top"
+                    Width="75"
+                    Click="basicBtn_Click"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+
+            <Calendar Margin="10"
+                      SelectionMode="MultipleRange"
+                      IsTodayHighlighted="True"
+                      Grid.Column="1"
+                      Grid.Row="0"
+                      SelectedDatesChanged="Calendar_SelectedDatesChanged"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+              <Calendar.BlackoutDates>
+                <CalendarDateRange Start="1/2/2025"
+                                   End="1/4/2025"/>
+                <CalendarDateRange Start="1/9/2025"
+                                   End="1/9/2025"/>
+                <CalendarDateRange Start="1/16/2025"
+                                   End="1/16/2025"/>
+                <CalendarDateRange Start="1/23/2025"
+                                   End="1/25/2025"/>
+                <CalendarDateRange Start="1/30/2025"
+                                   End="1/30/2025"/>
+              </Calendar.BlackoutDates>
+
+              <Calendar.SelectedDates>
+                <sys:DateTime>1/5/2025</sys:DateTime>
+                <sys:DateTime>1/12/2025</sys:DateTime>
+                <sys:DateTime>1/14/2025</sys:DateTime>
+                <sys:DateTime>1/13/2025</sys:DateTime>
+                <sys:DateTime>1/15/2025</sys:DateTime>
+                <sys:DateTime>1/27/2025</sys:DateTime>
+                <sys:DateTime>4/2/2025</sys:DateTime>
+              </Calendar.SelectedDates>
+
+              <Calendar.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0">
+                  <GradientStop Color="#FFE4EAF0"
+                                Offset="0"/>
+                  <GradientStop Color="#FFECF0F4"
+                                Offset="0.16"/>
+                  <GradientStop Color="#FFFCFCFD"
+                                Offset="0.16"/>
+                  <GradientStop Color="#FFD80320"
+                                Offset="1"/>
+                </LinearGradientBrush>
+              </Calendar.Background>
+
+            </Calendar>
+            <Label x:Name="basicLbl"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   Margin="5">选中日期</Label>
+
+            <CheckBox x:Name="basicCb1"
+                      Content="Two States"
+                      HorizontalAlignment="Left"
+                      Margin="10"
+                      VerticalAlignment="Top"
+                      Checked="HandleCheck"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Unchecked="HandleUnchecked"
+                      Width="90"/>
+
+            <CheckBox x:Name="basicCb2"
+                      Content="Three States"
+                      HorizontalAlignment="Left"
+                      Margin="10 40 50 10"
+                      VerticalAlignment="Top"
+                      Width="90"
+                      IsThreeState="True"
+                      Indeterminate="HandleThirdState"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Checked="HandleCheck"
+                      Unchecked="HandleUnchecked"/>
+
+            <TextBox x:Name="basicTb1"
+                     HorizontalAlignment="Left"
+                     Height="20"
+                     Margin="10"
+                     TextWrapping="Wrap"
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     VerticalAlignment="Top"
+                     Width="250"/>
+
+            <TextBox x:Name="basicTb2"
+                     HorizontalAlignment="Left"
+                     Height="20"
+                     Margin="10 40 50 10"
+                     TextWrapping="Wrap"
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     VerticalAlignment="Top"
+                     Width="250"/>
+
+            <ComboBox x:Name="basicComb3"
+                      HorizontalAlignment="Left"
+                      Margin="10"
+                      VerticalAlignment="Top"
+                      Width="120"
+                      Grid.Column="0"
+                      Grid.Row="2"
+                      SelectionChanged="Combo3_SelectionChanged">
+
+              <ComboBoxItem Content="Item #1"/>
+              <ComboBoxItem Content="Item #2"/>
+              <ComboBoxItem Content="Item #3"/>
+            </ComboBox>
+
+            <ComboBox x:Name="basicComb4"
+                      HorizontalAlignment="Left"
+                      Margin="10 40 0 10"
+                      VerticalAlignment="Top"
+                      Width="120"
+                      IsEditable="True"
+                      Grid.Column="0"
+                      Grid.Row="2"
+                      SelectionChanged="Combo4_SelectionChanged">
+
+              <ComboBoxItem Content="Item #1"/>
+              <ComboBoxItem Content="Item #2"/>
+              <ComboBoxItem Content="Item #3"/>
+            </ComboBox>
+
+            <TextBox x:Name="basicTb3"
+                     HorizontalAlignment="Left"
+                     Height="20"
+                     Margin="10"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Top"
+                     Grid.Column="1"
+                     Grid.Row="2"
+                     Width="200"/>
+
+            <TextBox x:Name="basicTb4"
+                     HorizontalAlignment="Left"
+                     Height="20"
+                     Margin="10 40 0 10"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Top"
+                     Grid.Column="1"
+                     Grid.Row="2"
+                     Width="200"/>
+
+            <TextBox x:Name="basicTb5"
+                     HorizontalAlignment="Left"
+                     Height="50"
+                     Margin="0"
+                     TextWrapping="Wrap"
+                     Text="Hi, this is WPF tutorial"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     VerticalAlignment="Top"
+                     Width="150">
+
+              <TextBox.ContextMenu>
+                <ContextMenu>
+                  <MenuItem Header="_Bold"
+                            IsCheckable="True"
+                            Checked="Bold_Checked"
+                            Unchecked="Bold_Unchecked"/>
+                  <MenuItem Header="_Italic"
+                            IsCheckable="True"
+                            Checked="Italic_Checked"
+                            Unchecked="Italic_Unchecked"/>
+                  <Separator/>
+                  <MenuItem Header="Increase Font Size"
+                            Click="IncreaseFont_Click"/>
+                  <MenuItem Header="_Decrease Font Size"
+                            Click="DecreaseFont_Click"/>
+                </ContextMenu>
+              </TextBox.ContextMenu>
+
+            </TextBox>
+
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="基础控件2">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
     </TabControl>
   </Grid>
 </Window>
