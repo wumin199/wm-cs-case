@@ -4,7 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FirstWPF"
+        xmlns:views ="clr-namespace:FirstWPF.Tutorial.DependencyPropertity"
+        xmlns:re ="clr-namespace:FirstWPF.Tutorial.RouteEvent"
         mc:Ignorable="d"
+        ButtonBase.Click="RouteWindow_Click"
         Title="Test" Height="450" Width="800">
   <Grid>
     <TabControl Margin="5">
@@ -12,23 +15,57 @@
         <Grid>
         </Grid>
       </TabItem>
-      <TabItem Header="依赖属性">
-        <Grid>
-          <Button  Height = "40" Width = "175" Margin = "264,19,345,339" Content = "Dependency Property">
+      <TabItem Header="依赖属性" Height="19" VerticalAlignment="Bottom">
+        <Grid RenderTransformOrigin="0.502,0.516" >
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+
+
+          <Label Content="IsMouseOver是默认支持的依赖属性" Grid.Row="0" Grid.Column="0" Margin="10 10 10 10" />
+          <Button  Height = "40" Width = "175"  Content = "Dependency Property" Grid.Row="0" Grid.Column="1">
             <Button.Style>
               <Style TargetType = "{x:Type Button}">
                 <Style.Triggers>
                   <Trigger Property = "IsMouseOver" Value = "True">
                     <Setter Property = "Foreground" Value = "Red" />
                   </Trigger>
-
                 </Style.Triggers>
               </Style>
             </Button.Style>
           </Button>
-          <Label Content="IsMouseOver是默认支持的依赖属性" Margin="10,26,543,334" >
-          </Label>
-                </Grid>
+          <views:NewTextBox SetText="SetText" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Width="200" Height="50" ></views:NewTextBox>
+        </Grid>
+      </TabItem>
+
+      <TabItem Header="路由事件">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <StackPanel Grid.Column="0" Grid.Row="0" Margin="20,20,20,20" ButtonBase.Click="RouteStatckPanel_Click" >
+            <StackPanel Margin="10">
+              <TextBlock Name="txt1" FontSize="18" Margin="5" Text="This is TextBlock1"/>
+              <TextBlock Name="txt2" FontSize="18" Margin="5" Text="This is TextBlock2"/>
+              <TextBlock Name="txt3" FontSize="18" Margin="5" Text="This is TextBlock3"/>
+            </StackPanel>
+            <Button Margin="10" Content="Click me" Width="80" Click="RouteBtn_Click" />
+          </StackPanel>
+
+
+          <re:MyCustomControl Grid.Column="1" Grid.Row="0" MyClick="MyCustomControl_MyClick" />
+
+        </Grid>
       </TabItem>
     </TabControl>
   </Grid>

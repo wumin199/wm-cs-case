@@ -24,13 +24,36 @@ namespace FirstWPF
       InitializeComponent();
     }
 
-    public static readonly DependencyProperty IsSpinningProperty = DependencyProperty.Register("IsPinning", typeof(bool),
-      typeof(MainWindow));
-    public bool IsSpinning
+
+
+    #region 路由事件
+
+    // Window -> StackPanel -> Button
+    private void RouteBtn_Click(object sender, RoutedEventArgs e)
     {
-      get => (bool)GetValue(IsSpinningProperty);
-      set => SetValue(IsSpinningProperty, value);
+      txt1.Text = "Button is Clicked";
+
     }
+
+    private void RouteStatckPanel_Click(object sender, RoutedEventArgs e)
+    {
+      txt2.Text = "Click event is bubbled to Stack Panel";
+      e.Handled = true;
+    }
+
+    private void RouteWindow_Click(object sender, RoutedEventArgs e)
+    {
+      txt3.Text = "Click event is bubbled to Window";
+    }
+
+    private void MyCustomControl_MyClick(object sender, RoutedEventArgs e)
+    {
+      // 这个Click的路由事件是在MyCustomControl中定义的，Click是在Generic.xaml中联合定义的
+      MessageBox.Show("It's the custom routed event of your custom control");
+    }
+
+
+    #endregion
 
 
   }

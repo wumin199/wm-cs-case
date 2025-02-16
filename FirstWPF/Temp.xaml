@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="Temp" Height="241" Width="472">
   <Grid>
-    <Button  Height = "40" Width = "175" Margin = "10" Content = "Dependency Property">
+    <Button  Height = "40" Width = "175" Margin = "10" Content = "Dependency Property" Click="Button_Click">
       <Button.Style>
         <Style TargetType = "{x:Type Button}">
           <Style.Triggers>

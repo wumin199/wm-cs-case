@@ -15,14 +15,19 @@ using System.Windows.Shapes;
 
 namespace FirstWPF
 {
-    /// <summary>
-    /// Temp.xaml 的交互逻辑
-    /// </summary>
-    public partial class Temp : Window
+  /// <summary>
+  /// Temp.xaml 的交互逻辑
+  /// </summary>
+  public partial class Temp : Window
+  {
+    public Temp()
     {
-        public Temp()
-        {
-            InitializeComponent();
-        }
+      InitializeComponent();
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+  }
 }
