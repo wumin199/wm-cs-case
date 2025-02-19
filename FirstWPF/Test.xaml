@@ -6,11 +6,24 @@
         xmlns:local="clr-namespace:FirstWPF"
         xmlns:views="clr-namespace:FirstWPF.Tutorial.DependencyPropertity"
         xmlns:re="clr-namespace:FirstWPF.Tutorial.RouteEvent"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         ButtonBase.Click="RouteWindow_Click"
         Title="Test"
         Height="450"
         Width="800">
+
+  <Window.Resources>
+    <ObjectDataProvider x:Key = "myEnum" MethodName = "GetValues" 
+         ObjectType = "{x:Type core:Enum}">
+
+      <ObjectDataProvider.MethodParameters>
+        <x:TypeExtension Type = "local:Party" />
+      </ObjectDataProvider.MethodParameters>
+
+    </ObjectDataProvider>
+  </Window.Resources>
+
   <Grid>
     <TabControl Margin="5">
       <TabItem Header="临时测试">
@@ -330,6 +343,15 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+            <DataGrid Name ="dataGrid" AlternatingRowBackground="LightBlue" AlternationCount="2" AutoGenerateColumns="False"
+          Grid.Row="0" Grid.Column="0">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="ReElected?" Binding="{Binding WasReElected}" />
+                <DataGridComboBoxColumn Header="Party" SelectedItemBinding="{Binding Affiliation}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
+              </DataGrid.Columns>
+            </DataGrid>
           </Grid>
         </ScrollViewer>
       </TabItem>
