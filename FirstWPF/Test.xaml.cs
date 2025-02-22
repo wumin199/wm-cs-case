@@ -28,12 +28,6 @@ namespace FirstWPF
       dataGrid.ItemsSource = Employee.GetEmployees();
     }
 
-    public enum Party
-    {
-      Indepentent,
-      Federalist,
-      DemocratRepublican,
-    }
 
 
     #region 路由事件
@@ -164,80 +158,94 @@ namespace FirstWPF
       }
     }
 
-    public class Employee : INotifyPropertyChanged {
-      private string name;
-      private string title;
-      private bool wasReElected;
-      private Party affiliation;
-
-
-      public string Name
-      {
-        get { return name; }
-        set
-        {
-          name = value;
-          
-        }
-      }
-
-      public string Title
-      {
-        get { return title; }
-        set
-        {
-          title = value;
-          RaisePropertyChanged();
-        }
-      }
-
-      public bool WasReElected
-      {
-        get { return wasReElected; }
-        set
-        {
-          wasReElected = value;
-          RaisePropertyChanged();
-        }
-      }
-
-      public Party Affiliation
-      {
-        get { return affiliation; }
-        set
-        {
-          affiliation = value;
-          RaisePropertyChanged();
-        }
-      }
-
-      public static ObservableCollection<Employee> GetEmployees()
-      {
-        var employees = new ObservableCollection<Employee>();
-        employees.Add(new Employee { Name = "George Washington", Title = "Minister", WasReElected = true, Affiliation = Party.Indepentent });
-        employees.Add(new Employee { Name = "John Adams", Title = "CM", WasReElected = false, Affiliation = Party.Federalist });
-        employees.Add(new Employee { Name = "Thomas Jefferson", Title = "PM", WasReElected = false, Affiliation = Party.DemocratRepublican });
-        employees.Add(new Employee { Name = "James Madison", Title = "Minister", WasReElected = true, Affiliation = Party.Indepentent });
-        employees.Add(new Employee { Name = "James Monroe", Title = "Minister", WasReElected = false, Affiliation = Party.Federalist });
-        employees.Add(new Employee { Name = "John Quincy Adams", Title = "Minister", WasReElected = false, Affiliation = Party.DemocratRepublican });
-        return employees;
-      }
-
-      public event PropertyChangedEventHandler PropertyChanged;
-
-      private void RaisePropertyChanged([CallerMemberName] string caller="")
-      {
-        if (PropertyChanged != null)
-        {
-          PropertyChanged(this, new PropertyChangedEventArgs(caller));
-        }
-
-      }
-
-
-    }
     #endregion
 
 
   }
+
+
+  #region 基础控件
+
+  public enum Party
+  {
+    Indepentent,
+    Federalist,
+    DemocratRepublican,
+  }
+
+  public class Employee : INotifyPropertyChanged
+  {
+    private string name;
+    private string title;
+    private bool wasReElected;
+    private Party affiliation;
+
+
+    public string Name
+    {
+      get { return name; }
+      set
+      {
+        name = value;
+        RaisePropertyChanged();
+
+      }
+    }
+
+    public string Title
+    {
+      get { return title; }
+      set
+      {
+        title = value;
+        RaisePropertyChanged();
+      }
+    }
+
+    public bool WasReElected
+    {
+      get { return wasReElected; }
+      set
+      {
+        wasReElected = value;
+        RaisePropertyChanged();
+      }
+    }
+
+    public Party Affiliation
+    {
+      get { return affiliation; }
+      set
+      {
+        affiliation = value;
+        RaisePropertyChanged();
+      }
+    }
+
+    public static ObservableCollection<Employee> GetEmployees()
+    {
+      var employees = new ObservableCollection<Employee>();
+      employees.Add(new Employee() { Name = "George Washington", Title = "Minister", WasReElected = true, Affiliation = Party.Indepentent });
+      employees.Add(new Employee() { Name = "John Adams", Title = "CM", WasReElected = false, Affiliation = Party.Federalist });
+      employees.Add(new Employee() { Name = "Thomas Jefferson", Title = "PM", WasReElected = false, Affiliation = Party.DemocratRepublican });
+      employees.Add(new Employee() { Name = "James Madison", Title = "Minister", WasReElected = true, Affiliation = Party.Indepentent });
+      employees.Add(new Employee() { Name = "James Monroe", Title = "Minister", WasReElected = false, Affiliation = Party.Federalist });
+      employees.Add(new Employee() { Name = "John Quincy Adams", Title = "Minister", WasReElected = false, Affiliation = Party.DemocratRepublican });
+      return employees;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private void RaisePropertyChanged([CallerMemberName] string caller = "")
+    {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
+      
+
+    }
+
+
+  }
+
+
+  #endregion
 }

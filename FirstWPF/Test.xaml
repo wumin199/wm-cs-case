@@ -348,7 +348,7 @@
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
-                <DataGridTextColumn Header="ReElected?" Binding="{Binding WasReElected}" />
+                <DataGridCheckBoxColumn Header="ReElected?" Binding="{Binding WasReElected}" />
                 <DataGridComboBoxColumn Header="Party" SelectedItemBinding="{Binding Affiliation}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
               </DataGrid.Columns>
             </DataGrid>

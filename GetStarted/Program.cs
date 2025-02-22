@@ -3,7 +3,7 @@ using System.Threading;
 using GetStarted;
 using TestLib;
 using TestNuGet;
-using DIBasics;
+using Tutorial;
 using System.Threading.Tasks;
 
 class Program
@@ -42,17 +42,17 @@ class Program
     // var test = new TestType();
     // test.Test1();
 
-    // var test = new DIBasics.Example.Test1();
+    // var test = new Tutorial.DIBasics.Test1();
     // test.Run();
 
-    // var test = new DIBasics.Example.Test2();
+    // var test = new Tutorial.DIBasics.Test2();
     // await test.Run(args);
 
-    // var test = new DIBasics.Example.Test3();
+    // var test = new Tutorial.DIBasics.Test3();
     // test.test3();
 
-    var test = new DIBasics.Example.Test4();
-    test.Run();
+    // var test = new Tutorial.DIBasics.Test4();
+    // test.Run();
   }
 
 
