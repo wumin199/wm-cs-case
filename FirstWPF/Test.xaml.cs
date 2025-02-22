@@ -188,10 +188,6 @@ namespace FirstWPF
         case MessageBoxResult.Cancel: basicTb7.Text = "Cancel button is clicked"; break;
       }
     }
-
-
-    #endregion
-
     private void MenuItem_Click(object sender, RoutedEventArgs e)
     {
 
@@ -206,6 +202,30 @@ namespace FirstWPF
     {
 
     }
+
+    private void HandleStatus(object sender, RoutedEventArgs e)
+    {
+      var rb = sender as RadioButton;
+      if (rb?.IsChecked == true)
+      {
+        textBlock3.Text = "You have selected: " + rb.Content.ToString();
+      }
+    }
+
+    private void HandleGender(object sender, RoutedEventArgs e)
+    {
+      var rb = sender as RadioButton;
+      if (rb?.IsChecked == true)
+      {
+        textBlock2.Text = "You have selected: " + rb.Content.ToString();
+      }
+
+    }
+
+
+    #endregion
+
+
   }
 
 

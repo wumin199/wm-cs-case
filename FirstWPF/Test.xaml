@@ -10,8 +10,8 @@
         mc:Ignorable="d"
         ButtonBase.Click="RouteWindow_Click"
         Title="Test"
-        Height="600"
-        Width="800">
+        Height="1000"
+        Width="1500">
 
   <Window.Resources>
 
@@ -484,7 +484,7 @@
             <CheckBox Name = "PCheckBox" Margin = "10" Content = "Checked Me" Grid.Row="2" Grid.Column="0" />
             <Popup IsOpen = "{Binding ElementName = PCheckBox,Path = IsChecked}"    
                    PlacementTarget = "{Binding ElementName = PCheckBox}"
-                   AllowsTransparency = "True" PopupAnimation = "Slide">s
+                   AllowsTransparency = "True" PopupAnimation = "Slide">
 
               <Canvas Width = "125" Height = "100" Background = "LightGray">
                 <Canvas.RenderTransform>
@@ -495,6 +495,98 @@
               </Canvas>
 
             </Popup>
+
+            <StackPanel x:Name = "LayoutRoot" Margin = "20" Grid.Row="3" Grid.Column="0">
+
+              <Border BorderThickness = "5" BorderBrush = "Green">
+                <StackPanel Background = "White">
+                  <TextBlock HorizontalAlignment = "Center" Margin = "10"  
+                  Text = "Value-Based Progress Bar" />
+                  <ProgressBar x:Name = "pg1" Value = "100"  Margin = "10" Maximum = "200"  
+                  Height = "15" IsIndeterminate = "False" />
+                </StackPanel>
+              </Border>
+
+              <Border BorderThickness = "5" BorderBrush = "Green">
+                <StackPanel Background = "White">
+                  <TextBlock HorizontalAlignment = "Center"  
+                  Margin = "10" Text = "Indeterminate Progress Bar" />
+                  <ProgressBar x:Name = "pg2" Margin = "10" Height = "15"  
+                  IsIndeterminate = "True" />
+                </StackPanel>
+              </Border>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+
+              <TextBlock  HorizontalAlignment = "Left"  
+                   Margin = "10" TextWrapping = "Wrap" Text = "Gender:"
+                   VerticalAlignment = "Top" />
+              <RadioButton x:Name = "rb1" Content = "Male" HorizontalAlignment = "Left"  
+                           Margin = "10" VerticalAlignment = "Top"  
+                           GroupName = "Gender" Checked = "HandleGender" />
+
+              <RadioButton x:Name = "rb2" Content = "Female" HorizontalAlignment = "Left"  
+                         Margin = "10" VerticalAlignment = "Top"  
+                         GroupName = "Gender" Checked = "HandleGender" />
+              <TextBlock x:Name = "textBlock2" HorizontalAlignment = "Left"  
+                         Margin = "10" TextWrapping = "Wrap"  
+                         VerticalAlignment = "Top" Width = "Auto" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
+              <TextBlock HorizontalAlignment = "Left"   Margin = "10" TextWrapping = "Wrap" Text = "Marital Status:"
+                   VerticalAlignment = "Top" />
+
+              <RadioButton x:Name = "rb3" Content = "Single" HorizontalAlignment = "Left"
+                             Margin = "10" VerticalAlignment = "Top"  
+                             GroupName = "Status" Checked = "HandleStatus" />
+
+              <RadioButton x:Name = "radioButton" Content = "Engaged" HorizontalAlignment = "Left"  
+                         Margin = "10" VerticalAlignment = "Top"  
+                         GroupName = "Status"  Checked = "HandleStatus" />
+              <RadioButton x:Name = "radioButton1" Content = "Married"  
+                           GroupName = "Status" HorizontalAlignment = "Left" Margin = "10"
+                           VerticalAlignment = "Top"  Checked = "HandleStatus" />
+              <TextBlock x:Name = "textBlock3" HorizontalAlignment = "Left"  
+                         Margin = "10" TextWrapping = "Wrap" 
+                         VerticalAlignment = "Top" Width = "Auto" />
+            </StackPanel>
+
+
+
+            <StackPanel  Grid.Row="6" Grid.Column="0">
+              <!-- A large TextBlock. -->
+              <TextBlock Width = "300" TextWrapping = "Wrap" Margin = "10"  
+            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac mi ipsum. 
+            Phasellus vel malesuada mauris. Donec pharetra, enim sit amet mattis tincidunt, felis 
+            nisi semper lectus, vel porta diam nisi in augue. Pellentesque lacus tortor, aliquam et 
+            faucibus id, rhoncus ut justo. Sed id lectus odio, eget pulvinar diam. Suspendisse 
+            eleifend ornare libero, in luctus purus aliquet non. Sed interdum, sem vitae rutrum 
+            rhoncus, felis ligula ultrices sem, in eleifend eros ante id neque." />
+
+              <!-- The same large TextBlock, wrapped in a ScrollViewer. -->
+
+              <ScrollViewer Height = "200" Width = "200"  
+            HorizontalScrollBarVisibility = "Auto" VerticalScrollBarVisibility = "Auto">
+
+                <TextBlock Width = "300" TextWrapping = "Wrap" 
+               Text = " This license governs use of code marked as sample or example available 
+               on this web site without a license agreement, as provided under the section above 
+               titled NOTICE SPECIFIC TO SOFTWARE AVAILABLE ON THIS WEB SITE. If you use such 
+               code (the software), you accept this license. If you do not accept the license, 
+               do not use the software.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+               Sed ac mi ipsum. Phasellus vel malesuada mauris. Donec pharetra, enim sit amet 
+               mattis tincidunt, felis nisi semper lectus, vel porta diam nisi in augue. 
+               Pellentesque lacus tortor, aliquam et faucibus id, rhoncus ut justo. Sed id 
+               lectus odio, eget pulvinar diam. Suspendisse eleifend ornare libero, in luctus 
+               purus aliquet non. Sed interdum, sem vitae rutrum rhoncus, felis ligula ultrices 
+               sem, in eleifend eros ante id neque." />
+
+              </ScrollViewer>
+
+            </StackPanel>
 
           </Grid>
         </ScrollViewer>
