@@ -26,6 +26,9 @@ namespace FirstWPF
     {
       InitializeComponent();
       dataGrid.ItemsSource = Employee.GetEmployees();
+      MenList.Items.Add(new Person() { Name = "John", ID = "1", Age = 42 });
+      MenList.Items.Add(new Person() { Name = "Paul", ID = "2", Age = 39 });
+      MenList.Items.Add(new Person() { Name = "George", ID = "3", Age = 29 });
     }
 
 
@@ -275,6 +278,12 @@ namespace FirstWPF
 
   }
 
+  public class Person
+  {
+    public string Name { get; set; }
+    public string ID { get; set; }
+    public int Age { get; set; }
+  }
 
   #endregion
 }

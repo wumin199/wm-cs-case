@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         ButtonBase.Click="RouteWindow_Click"
         Title="Test"
-        Height="450"
+        Height="600"
         Width="800">
 
   <Window.Resources>
@@ -362,9 +362,42 @@
                         VerticalAlignment="Top" SelectedDateChanged="DatePicker_SelectedDateChanged" 
                         Grid.Row="1" Grid.Column="0"/>
             <TextBox x:Name="basicTb6" Grid.Row="1" Grid.Column="1" Width="100"/>
-            
+
             <Button Height="23" Margin="10" x:Name="btn_showmsg" VerticalAlignment="Top" Click="ShowMessageBox_Click" Grid.Row="2" Grid.Column="0">Show Messsage Box</Button>
             <TextBox Height="23" HorizontalAlignment="Left" Margin="10" x:Name="basicTb7" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
+
+            <ListView HorizontalAlignment = "Left" Height = "Auto" Margin = "10,10,0,0"  VerticalAlignment = "Top" Width = "Auto" x:Name = "MenList"
+                      Grid.Row="3" Grid.Column="0">
+
+              <ListView.View>
+                <GridView>
+                  <GridViewColumn Header = "Name" DisplayMemberBinding = "{Binding Name}" 
+                  Width = "100"/>
+
+                  <GridViewColumn Header = "ID" DisplayMemberBinding = "{Binding ID}" 
+                  Width = "100"/>
+
+                  <GridViewColumn Header = "Age" DisplayMemberBinding = "{Binding Age}" 
+                  Width = "100"/>
+
+                </GridView>
+              </ListView.View>
+
+            </ListView>
+
+            <StackPanel Orientation = "Horizontal" Grid.Row="4"  Grid.ColumnSpan="3">
+              <Image Source = "/Images/1.PNG"  VerticalAlignment = "Top" Margin = "5" Width="300"/>
+              <Image Source = "/Images/2.PNG" VerticalAlignment = "Top" Margin = "5" Opacity = "0.5" Width="200" />
+            </StackPanel>
+
+            <StackPanel Grid.Row = "5" Grid.ColumnSpan="3">
+              <Ellipse Height = "200" Width = "200" HorizontalAlignment = "Left" Margin="5">
+                <Ellipse.Fill>
+                  <ImageBrush ImageSource = "/Images/3.PNG" />
+                </Ellipse.Fill>
+              </Ellipse>
+            </StackPanel>
+
           </Grid>
         </ScrollViewer>
       </TabItem>
