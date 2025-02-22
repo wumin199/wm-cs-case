@@ -362,7 +362,9 @@
                         VerticalAlignment="Top" SelectedDateChanged="DatePicker_SelectedDateChanged" 
                         Grid.Row="1" Grid.Column="0"/>
             <TextBox x:Name="basicTb6" Grid.Row="1" Grid.Column="1" Width="100"/>
-
+            
+            <Button Height="23" Margin="10" x:Name="btn_showmsg" VerticalAlignment="Top" Click="ShowMessageBox_Click" Grid.Row="2" Grid.Column="0">Show Messsage Box</Button>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="10" x:Name="basicTb7" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
           </Grid>
         </ScrollViewer>
       </TabItem>

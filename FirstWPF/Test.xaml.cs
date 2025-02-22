@@ -144,7 +144,7 @@ namespace FirstWPF
 
     private void IncreaseFont_Click(object sender, RoutedEventArgs e)
     {
-      if(basicTb5.FontSize < 18)
+      if (basicTb5.FontSize < 18)
       {
         basicTb5.FontSize += 2;
       }
@@ -172,9 +172,23 @@ namespace FirstWPF
       }
     }
 
-
+    private void ShowMessageBox_Click(object sender, RoutedEventArgs e)
+    {
+      string msgtext = "Click any button";
+      string txt = "My Title";
+      MessageBoxButton btn = MessageBoxButton.YesNoCancel;
+      MessageBoxResult result = MessageBox.Show(msgtext, txt, btn);
+      switch (result)
+      {
+        case MessageBoxResult.Yes: basicTb7.Text = "Yes button is clicked"; break;
+        case MessageBoxResult.No: basicTb7.Text = "No button is clicked"; break;
+        case MessageBoxResult.Cancel: basicTb7.Text = "Cancel button is clicked"; break;
+      }
+    }
 
     #endregion
+
+
   }
 
 
@@ -254,7 +268,7 @@ namespace FirstWPF
     {
       // 这个可以认为是被 xaml中的 {Binding Name} 所订阅
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
-      
+
 
     }
 
