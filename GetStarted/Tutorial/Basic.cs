@@ -345,7 +345,35 @@ namespace GetStarted
 
   }
 
+  public class Publisher
+  {
+    public delegate void PropertyChangedHandler(string message);
+    public event PropertyChangedHandler PropertyChanged;
 
+    public void Notify(string message)
+    {
+      PropertyChanged?.Invoke(message);
+    }
+  }
+
+  public class Subscriber
+  {
+    public void OnChanged(string message)
+    {
+      Console.WriteLine("Event received: " + message);
+    }
+  }
+
+  public class TestEvent
+  {
+    public void Test1()
+    {
+      var publisher = new Publisher();
+      var subscriber = new Subscriber();
+      publisher.PropertyChanged += subscriber.OnChanged;
+      publisher.Notify("Hello, event!");
+    }
+  }
 }
 
 namespace TestLib
