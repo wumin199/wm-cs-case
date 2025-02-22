@@ -26,8 +26,49 @@
     </ObjectDataProvider>
   </Window.Resources>
 
+  
+  
+  
   <Grid>
-    <TabControl Margin="5">
+
+    <Menu HorizontalAlignment = "Stretch" VerticalAlignment = "Top" Height="20" FontSize="14">
+
+      <MenuItem Header = "File">
+        <MenuItem Header = "New" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click" />
+
+        <MenuItem Header = "Open" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click" />
+
+        <Separator HorizontalAlignment = "Left" Width = "140" />
+
+        <MenuItem Header = "Close" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click"/>
+      </MenuItem>
+
+      <MenuItem Header = "Edit">
+        <MenuItem Header = "Find" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click1" />
+        <MenuItem Header = "Advanced" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click1" />
+        <Separator HorizontalAlignment = "Left" Width = "140" />
+        <MenuItem Header = "Settings" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click1" />
+      </MenuItem>
+
+      <MenuItem Header = "View">
+        <MenuItem Header = "About" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click2" />
+        <MenuItem Header = "Tutorial" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click2" />
+        <Separator HorizontalAlignment = "Left" Width = "140" />
+        <MenuItem Header = "Register" HorizontalAlignment = "Left" Width = "140" 
+               Click = "MenuItem_Click2"/>
+      </MenuItem>
+
+    </Menu>
+
+    <TabControl Margin="5,30,5,5">
       <TabItem Header="临时测试">
         <Grid>
         </Grid>
@@ -402,6 +443,63 @@
         </ScrollViewer>
       </TabItem>
 
+      <TabItem Header="基础控件3">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content = "Label Example in WPF" HorizontalAlignment = "Left"
+                   Margin = "5,5,5,5" VerticalAlignment ="Top"  Height = "100" Width = "400" 
+                   Background = "#FFD6BEBE" FontFamily = "Snap ITC" FontSize = "36"
+                   FontStyle = "Italic" FontWeight = "Light" Foreground = "#FFBD6B6B"
+                   Grid.Row="0" Grid.Column="0"/>
+
+            <ListBox x:Name = "basicListBox1" Margin = "10" Grid.Row="1" Grid.Column="0" SelectionMode="Single" >
+              <ListBoxItem Content = "XAML Tutorials" />
+              <ListBoxItem Content = "WPF Tutorials" />
+              <ListBoxItem Content = "Silverlight Tutorials" />
+              <ListBoxItem Content = "Windows 10 Tutorials" />
+              <ListBoxItem Content = "iOS Tutorials" />
+            </ListBox>
+
+            <TextBox Height = "23" x:Name = "textBox1" Width = "200" Margin = "10"  Grid.Row="1" Grid.Column="1"
+               HorizontalAlignment = "Left" VerticalAlignment = "Top"  
+               Text="{Binding SelectedItem.Content, ElementName=basicListBox1}" />
+
+            <CheckBox Name = "PCheckBox" Margin = "10" Content = "Checked Me" Grid.Row="2" Grid.Column="0" />
+            <Popup IsOpen = "{Binding ElementName = PCheckBox,Path = IsChecked}"    
+                   PlacementTarget = "{Binding ElementName = PCheckBox}"
+                   AllowsTransparency = "True" PopupAnimation = "Slide">s
+
+              <Canvas Width = "125" Height = "100" Background = "LightGray">
+                <Canvas.RenderTransform>
+                  <RotateTransform x:Name = "theTransform" CenterX="0" CenterY="0" Angle="0" />
+                </Canvas.RenderTransform>
+                <TextBlock TextWrapping = "Wrap" Foreground = "Blue"
+                          Text = "Hi, this is Popup" />
+              </Canvas>
+
+            </Popup>
+
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
     </TabControl>
+  
   </Grid>
 </Window>

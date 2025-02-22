@@ -189,9 +189,23 @@ namespace FirstWPF
       }
     }
 
+
     #endregion
 
+    private void MenuItem_Click(object sender, RoutedEventArgs e)
+    {
 
+    }
+
+    private void MenuItem_Click1(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void MenuItem_Click2(object sender, RoutedEventArgs e)
+    {
+
+    }
   }
 
 
