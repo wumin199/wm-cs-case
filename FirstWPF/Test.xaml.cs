@@ -241,6 +241,71 @@ namespace FirstWPF
       basicTbl8.Text = "You have checked the button";
     }
 
+    private void DockerPanel_Click(object sender, RoutedEventArgs e)
+    {
+      var btn = sender as Button;
+      if (btn != null)
+      {
+        MessageBox.Show("You have clicked the button: " + btn.Content.ToString());
+      }
+    }
+
+    private void OnMouseEnter(object sender, MouseEventArgs e)
+    {
+      Rectangle source = e.Source as Rectangle;
+      if (source != null)
+      {
+        source.Fill = Brushes.SlateGray;
+      }
+      basicTbl12.Text = "Mouse entered";
+    }
+
+    private void OnMouseLeave(object sender, MouseEventArgs e)
+    {
+      Rectangle source = e.Source as Rectangle;
+      if (source != null)
+      {
+        source.Fill = Brushes.LightGray;
+      }
+      basicTbl12.Text = "Mouse Leave";
+      basicTbl13.Text = "";
+      basicTbl14.Text = "";
+    }
+
+    private void OnMouseMove(object sender, MouseEventArgs e)
+    {
+      Point pnt = e.GetPosition(mrRec);
+      basicTbl13.Text = "Mouse Move: " + pnt.X + ", " + pnt.Y;
+    }
+
+    private void OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+      Rectangle source = e.Source as Rectangle;
+      Point pnt = e.GetPosition(mrRec);
+      
+      if (source != null)
+      {
+        source.Fill = Brushes.Beige;
+      }
+      basicTbl14.Text = "Mouse Down: " + pnt.X + ", " + pnt.Y;
+
+    }
+    private void OnStackPanelKeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.Key == Key.O && Keyboard.Modifiers == ModifierKeys.Control)
+      {
+        MessageBox.Show("Do you want to open a file?");
+        e.Handled = true;
+      }
+    }
+
+    private void OnInputBtnClick(object sender, RoutedEventArgs e)
+    {
+      MessageBox.Show("Do you want to open a file?");
+      e.Handled = true;
+    }
+
+
     #endregion
 
 

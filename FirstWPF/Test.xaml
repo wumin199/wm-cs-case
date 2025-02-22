@@ -673,8 +673,33 @@
                    Margin = "136,80,0,10" VerticalAlignment = "Top" Width = "75"  
                    ToolTipService.ToolTip = "Log in" />
             </Grid>
+            <DockPanel LastChildFill = "True" Grid.Row="4" Grid.Column="0" >
+              <Button Content = "Top" DockPanel.Dock = "Top" Click = "DockerPanel_Click" />
+              <Button Content = "Bottom" DockPanel.Dock = "Bottom" Click = "DockerPanel_Click" />
+              <Button Content = "Left" Click = "DockerPanel_Click" />
+              <Button Content = "Right" DockPanel.Dock = "Right" Click = "DockerPanel_Click" />
+              <Button Content = "Center" Click = "DockerPanel_Click" />
+            </DockPanel>
+            <StackPanel Grid.Row="5" Grid.Column="0">
+              <Rectangle x:Name = "mrRec" Fill = "AliceBlue" 
+                   MouseEnter = "OnMouseEnter" MouseLeave = "OnMouseLeave"  
+                   MouseMove = "OnMouseMove" MouseDown = "OnMouseDown" Height = "100" Margin = "20">
+                        </Rectangle>
 
+              <TextBlock x:Name = "basicTbl12" Height = "31" HorizontalAlignment = "Left" 
+                   Width = "250" Margin = "10" />
+              <TextBlock x:Name = "basicTbl13" Height = "31" HorizontalAlignment = "Left"  
+                           Width = "250" Margin = "10" />
+              <TextBlock x:Name = "basicTbl14" Height = "31" HorizontalAlignment = "Left"  
+                           Width = "250" Margin = "10" />
 
+            </StackPanel>
+
+            <StackPanel Orientation = "Horizontal" KeyDown = "OnStackPanelKeyDown" Grid.Row="6" Grid.Column="0">
+              <TextBox Width = "400" Height = "30" Margin = "10"/>
+              <Button Click = "OnInputBtnClick"
+            Content = "Open" Margin = "10" Width = "50" Height = "30"/>
+            </StackPanel>
 
           </Grid>
         </ScrollViewer>
