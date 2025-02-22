@@ -158,9 +158,23 @@ namespace FirstWPF
       }
     }
 
+    private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+    {
+      var picker = sender as DatePicker;
+      DateTime? date = picker?.SelectedDate;
+      if (date.HasValue)
+      {
+        basicTb6.Text = date.Value.ToShortDateString();
+      }
+      else
+      {
+        basicTb6.Text = "No date selected";
+      }
+    }
+
+
+
     #endregion
-
-
   }
 
 
@@ -238,6 +252,7 @@ namespace FirstWPF
 
     private void RaisePropertyChanged([CallerMemberName] string caller = "")
     {
+      // 这个可以认为是被 xaml中的 {Binding Name} 所订阅
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
       
 

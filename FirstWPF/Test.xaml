@@ -14,8 +14,10 @@
         Width="800">
 
   <Window.Resources>
+
     <ObjectDataProvider x:Key = "myEnum" MethodName = "GetValues" 
          ObjectType = "{x:Type core:Enum}">
+      <!--相当于 Enum.GetValues(typeof(Party))-->
 
       <ObjectDataProvider.MethodParameters>
         <x:TypeExtension Type = "local:Party" />
@@ -346,12 +348,21 @@
             <DataGrid Name ="dataGrid" AlternatingRowBackground="LightBlue" AlternationCount="2" AutoGenerateColumns="False"
           Grid.Row="0" Grid.Column="0">
               <DataGrid.Columns>
+                <!--DataGridTextColumn内容修改的时候，是调用了SetName -->
+                <!--{Binding Name} 可以认为是注册了事件回调到前端的显示栏，类似OnClick()，做刷新 -->
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
                 <DataGridCheckBoxColumn Header="ReElected?" Binding="{Binding WasReElected}" />
+                <!--ItemsSource 用于提供下拉框的数据源-->
                 <DataGridComboBoxColumn Header="Party" SelectedItemBinding="{Binding Affiliation}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
               </DataGrid.Columns>
             </DataGrid>
+
+            <DatePicker HorizontalAlignment="Left" Margin="10, 10, 0, 0"
+                        VerticalAlignment="Top" SelectedDateChanged="DatePicker_SelectedDateChanged" 
+                        Grid.Row="1" Grid.Column="0"/>
+            <TextBox x:Name="basicTb6" Grid.Row="1" Grid.Column="1" Width="100"/>
+
           </Grid>
         </ScrollViewer>
       </TabItem>
