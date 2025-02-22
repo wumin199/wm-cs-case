@@ -222,6 +222,24 @@ namespace FirstWPF
 
     }
 
+    private void basicSlider1Changed(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+      if (sender is Slider slider)
+      {
+        int val = Convert.ToInt32(e.NewValue);
+        string msg = String.Format("Current value: {0}", val);
+        basicTblk.Text = msg;
+      }
+
+    }
+    private void HandleUncheckBtn(object sender, RoutedEventArgs e)
+    {
+      basicTbl8.Text = "You have unchecked the button";
+    }
+    private void HandleCheckTbn(object sender, RoutedEventArgs e)
+    {
+      basicTbl8.Text = "You have checked the button";
+    }
 
     #endregion
 

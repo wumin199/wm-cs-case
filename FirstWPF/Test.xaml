@@ -26,9 +26,9 @@
     </ObjectDataProvider>
   </Window.Resources>
 
-  
-  
-  
+
+
+
   <Grid>
 
     <Menu HorizontalAlignment = "Stretch" VerticalAlignment = "Top" Height="20" FontSize="14">
@@ -591,7 +591,98 @@
           </Grid>
         </ScrollViewer>
       </TabItem>
+
+
+
+      <TabItem Header="基础控件4">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0">
+              <TextBlock Text = "Slider" Margin = "10" />
+
+              <Slider x:Name = "basicSlider1" Minimum = "0" Maximum = "100" TickFrequency = "2" Width="500"
+                      TickPlacement = "BottomRight" ValueChanged = "basicSlider1Changed" Margin = "10">
+                <Slider.Background>
+                  <LinearGradientBrush EndPoint = "0.5,1" StartPoint = "0.5,0">
+                    <GradientStop Color = "Black" Offset = "0" />
+                    <GradientStop Color = "#FFF5DCDC" Offset = "1" />
+                  </LinearGradientBrush>
+                </Slider.Background>
+              </Slider>
+
+              <TextBlock x:Name = "basicTblk" Margin = "10" Text = "Current value: 0" />
+            </StackPanel>
+
+            <TextBlock FontFamily = "Verdana" Grid.Row="1" Grid.Column="0"
+         LineStackingStrategy = "MaxHeight" LineHeight = "10" Width = "500"  
+         TextWrapping = "Wrap" Background = "#FFE2B1B1" Margin = "48,8,48,10">
+			
+         Use the <Run FontSize = "30">LineStackingStrategy</Run> property to determine how
+            a line box is created for each line. A value of <Run FontSize = "20">MaxHeight</Run> 
+            specifies that the stack height is the smallest value that contains all the inline 
+            elements on that line when those elements are properly aligned. A value of <Run 
+            FontSize = "20"> BlockLineHeight</Run> specifies that the stack height is 
+            determined by the block element LineHeight property value.
+            </TextBlock>
+
+            <StackPanel Grid.Row="2" Grid.Column="0">
+              <ToggleButton x:Name = "tb" Content = "Toggle"
+                 Checked = "HandleCheckTbn" Unchecked = "HandleUncheckBtn" Margin = "10"
+                 Width = "108" HorizontalAlignment = "Center" />
+              <TextBlock x:Name = "basicTbl8" Margin = "10" Width = "300" 
+                 HorizontalAlignment = "Center" FontSize = "24" Background = "#FFFDE0E0" />
+            </StackPanel>
+
+
+            <Grid Grid.Row="3" Grid.Column="0">
+              <TextBlock x:Name = "basicTbl9" HorizontalAlignment = "Left"  
+                       Margin = "10" TextWrapping = "Wrap"  
+                       Text = "User Name" VerticalAlignment = "Top" />
+
+              <TextBlock x:Name = "basicTbl10" HorizontalAlignment = "Left"  
+                     Margin = "10 50 10 10" TextWrapping = "Wrap"  
+                     Text = "Password" VerticalAlignment = "Top" />
+
+              <TextBox x:Name = "basicTbl11" HorizontalAlignment = "Left"  
+                   Height = "24" Margin = "136,10,0,0" TextWrapping = "Wrap"  
+                   VerticalAlignment = "Top" Width = "219"  
+                   ToolTipService.ToolTip  =  "Enter User Name" />
+
+              <PasswordBox x:Name = "passwordBox" HorizontalAlignment = "Left"  
+                   Margin = "136,46,0,0" VerticalAlignment = "Top" Width = "219"  
+                   Height = "24" ToolTipService.ToolTip  =  "Enter Password" />
+
+               <Button x:Name = "button" Content = "Log in" HorizontalAlignment = "Left"  
+                   Margin = "136,80,0,10" VerticalAlignment = "Top" Width = "75"  
+                   ToolTipService.ToolTip = "Log in" />
+            </Grid>
+
+
+
+          </Grid>
+        </ScrollViewer>
+
+
+
+      </TabItem>
     </TabControl>
-  
+
   </Grid>
 </Window>
