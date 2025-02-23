@@ -15,23 +15,58 @@
 
   <Window.Resources>
 
-    <ObjectDataProvider x:Key = "myEnum" MethodName = "GetValues" 
-         ObjectType = "{x:Type core:Enum}">
+    <ObjectDataProvider x:Key="myEnum"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type core:Enum}">
       <!--相当于 Enum.GetValues(typeof(Party))-->
 
       <ObjectDataProvider.MethodParameters>
-        <x:TypeExtension Type = "local:Party" />
+        <x:TypeExtension Type="local:Party"/>
       </ObjectDataProvider.MethodParameters>
 
     </ObjectDataProvider>
   </Window.Resources>
 
-
+  <Window.CommandBindings>
+    <CommandBinding Command="ApplicationCommands.New"
+                    Executed="NewExecuted"
+                    CanExecute="CanNew"/>
+    <CommandBinding Command="ApplicationCommands.Open"
+                    Executed="OpenExecuted"
+                    CanExecute="CanOpen"/>
+    <CommandBinding Command="ApplicationCommands.Save"
+                    Executed="SaveExecuted"
+                    CanExecute="CanSave"/>
+  </Window.CommandBindings>
 
 
   <Grid>
 
-    <Menu HorizontalAlignment = "Stretch" VerticalAlignment = "Top" Height="20" FontSize="14">
+    <StackPanel x:Name="stack"
+                Background="AliceBlue">
+
+      <!--<StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header = "New" Command = "ApplicationCommands.New" />
+          <MenuItem Header = "Open" Command = "Open" />
+          <MenuItem Header = "Save" Command = "Save" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>-->
+
+      <Menu>
+        <MenuItem Header="File">
+          <MenuItem Header="New"
+                    Command="New"/>
+          <MenuItem Header="Open"
+                    Command="Open"/>
+          <MenuItem Header="Save"
+                    Command="Save"/>
+        </MenuItem>
+      </Menu>
+
+    </StackPanel>
+
+    <!--<Menu HorizontalAlignment = "Stretch" VerticalAlignment = "Top" Height="20" FontSize="14">
 
       <MenuItem Header = "File">
         <MenuItem Header = "New" HorizontalAlignment = "Left" Width = "140" 
@@ -66,7 +101,7 @@
                Click = "MenuItem_Click2"/>
       </MenuItem>
 
-    </Menu>
+    </Menu>-->
 
     <TabControl Margin="5,30,5,5">
       <TabItem Header="临时测试">
@@ -386,55 +421,105 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <DataGrid Name ="dataGrid" AlternatingRowBackground="LightBlue" AlternationCount="2" AutoGenerateColumns="False"
-          Grid.Row="0" Grid.Column="0">
+            <DataGrid Name="dataGrid"
+                      AlternatingRowBackground="LightBlue"
+                      AlternationCount="2"
+                      AutoGenerateColumns="False"
+                      Grid.Row="0"
+                      Grid.Column="0">
               <DataGrid.Columns>
                 <!--DataGridTextColumn内容修改的时候，是调用了SetName -->
                 <!--{Binding Name} 可以认为是注册了事件回调到前端的显示栏，类似OnClick()，做刷新 -->
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
-                <DataGridCheckBoxColumn Header="ReElected?" Binding="{Binding WasReElected}" />
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Title"
+                                    Binding="{Binding Title}"/>
+                <DataGridCheckBoxColumn Header="ReElected?"
+                                        Binding="{Binding WasReElected}"/>
                 <!--ItemsSource 用于提供下拉框的数据源-->
-                <DataGridComboBoxColumn Header="Party" SelectedItemBinding="{Binding Affiliation}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
+                <DataGridComboBoxColumn Header="Party"
+                                        SelectedItemBinding="{Binding Affiliation}"
+                                        ItemsSource="{Binding Source={StaticResource myEnum}}"/>
               </DataGrid.Columns>
             </DataGrid>
 
-            <DatePicker HorizontalAlignment="Left" Margin="10, 10, 0, 0"
-                        VerticalAlignment="Top" SelectedDateChanged="DatePicker_SelectedDateChanged" 
-                        Grid.Row="1" Grid.Column="0"/>
-            <TextBox x:Name="basicTb6" Grid.Row="1" Grid.Column="1" Width="100"/>
+            <DatePicker HorizontalAlignment="Left"
+                        Margin="10, 10, 0, 0"
+                        VerticalAlignment="Top"
+                        SelectedDateChanged="DatePicker_SelectedDateChanged"
+                        Grid.Row="1"
+                        Grid.Column="0"/>
+            <TextBox x:Name="basicTb6"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Width="100"/>
 
-            <Button Height="23" Margin="10" x:Name="btn_showmsg" VerticalAlignment="Top" Click="ShowMessageBox_Click" Grid.Row="2" Grid.Column="0">Show Messsage Box</Button>
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="10" x:Name="basicTb7" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
+            <Button Height="23"
+                    Margin="10"
+                    x:Name="btn_showmsg"
+                    VerticalAlignment="Top"
+                    Click="ShowMessageBox_Click"
+                    Grid.Row="2"
+                    Grid.Column="0">Show Messsage Box</Button>
+            <TextBox Height="23"
+                     HorizontalAlignment="Left"
+                     Margin="10"
+                     x:Name="basicTb7"
+                     VerticalAlignment="Top"
+                     Width="120"
+                     Grid.Row="2"
+                     Grid.Column="1"/>
 
-            <ListView HorizontalAlignment = "Left" Height = "Auto" Margin = "10,10,0,0"  VerticalAlignment = "Top" Width = "Auto" x:Name = "MenList"
-                      Grid.Row="3" Grid.Column="0">
+            <ListView HorizontalAlignment="Left"
+                      Height="Auto"
+                      Margin="10,10,0,0"
+                      VerticalAlignment="Top"
+                      Width="Auto"
+                      x:Name="MenList"
+                      Grid.Row="3"
+                      Grid.Column="0">
 
               <ListView.View>
                 <GridView>
-                  <GridViewColumn Header = "Name" DisplayMemberBinding = "{Binding Name}" 
-                  Width = "100"/>
+                  <GridViewColumn Header="Name"
+                                  DisplayMemberBinding="{Binding Name}"
+                                  Width="100"/>
 
-                  <GridViewColumn Header = "ID" DisplayMemberBinding = "{Binding ID}" 
-                  Width = "100"/>
+                  <GridViewColumn Header="ID"
+                                  DisplayMemberBinding="{Binding ID}"
+                                  Width="100"/>
 
-                  <GridViewColumn Header = "Age" DisplayMemberBinding = "{Binding Age}" 
-                  Width = "100"/>
+                  <GridViewColumn Header="Age"
+                                  DisplayMemberBinding="{Binding Age}"
+                                  Width="100"/>
 
                 </GridView>
               </ListView.View>
 
             </ListView>
 
-            <StackPanel Orientation = "Horizontal" Grid.Row="4"  Grid.ColumnSpan="3">
-              <Image Source = "/Images/1.PNG"  VerticalAlignment = "Top" Margin = "5" Width="300"/>
-              <Image Source = "/Images/2.PNG" VerticalAlignment = "Top" Margin = "5" Opacity = "0.5" Width="200" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="4"
+                        Grid.ColumnSpan="3">
+              <Image Source="/Images/1.PNG"
+                     VerticalAlignment="Top"
+                     Margin="5"
+                     Width="300"/>
+              <Image Source="/Images/2.PNG"
+                     VerticalAlignment="Top"
+                     Margin="5"
+                     Opacity="0.5"
+                     Width="200"/>
             </StackPanel>
 
-            <StackPanel Grid.Row = "5" Grid.ColumnSpan="3">
-              <Ellipse Height = "200" Width = "200" HorizontalAlignment = "Left" Margin="5">
+            <StackPanel Grid.Row="5"
+                        Grid.ColumnSpan="3">
+              <Ellipse Height="200"
+                       Width="200"
+                       HorizontalAlignment="Left"
+                       Margin="5">
                 <Ellipse.Fill>
-                  <ImageBrush ImageSource = "/Images/3.PNG" />
+                  <ImageBrush ImageSource="/Images/3.PNG"/>
                 </Ellipse.Fill>
               </Ellipse>
             </StackPanel>
@@ -463,116 +548,200 @@
               <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content = "Label Example in WPF" HorizontalAlignment = "Left"
-                   Margin = "5,5,5,5" VerticalAlignment ="Top"  Height = "100" Width = "400" 
-                   Background = "#FFD6BEBE" FontFamily = "Snap ITC" FontSize = "36"
-                   FontStyle = "Italic" FontWeight = "Light" Foreground = "#FFBD6B6B"
-                   Grid.Row="0" Grid.Column="0"/>
+            <Label Content="Label Example in WPF"
+                   HorizontalAlignment="Left"
+                   Margin="5,5,5,5"
+                   VerticalAlignment="Top"
+                   Height="100"
+                   Width="400"
+                   Background="#FFD6BEBE"
+                   FontFamily="Snap ITC"
+                   FontSize="36"
+                   FontStyle="Italic"
+                   FontWeight="Light"
+                   Foreground="#FFBD6B6B"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
 
-            <ListBox x:Name = "basicListBox1" Margin = "10" Grid.Row="1" Grid.Column="0" SelectionMode="Single" >
-              <ListBoxItem Content = "XAML Tutorials" />
-              <ListBoxItem Content = "WPF Tutorials" />
-              <ListBoxItem Content = "Silverlight Tutorials" />
-              <ListBoxItem Content = "Windows 10 Tutorials" />
-              <ListBoxItem Content = "iOS Tutorials" />
+            <ListBox x:Name="basicListBox1"
+                     Margin="10"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     SelectionMode="Single">
+              <ListBoxItem Content="XAML Tutorials"/>
+              <ListBoxItem Content="WPF Tutorials"/>
+              <ListBoxItem Content="Silverlight Tutorials"/>
+              <ListBoxItem Content="Windows 10 Tutorials"/>
+              <ListBoxItem Content="iOS Tutorials"/>
             </ListBox>
 
-            <TextBox Height = "23" x:Name = "textBox1" Width = "200" Margin = "10"  Grid.Row="1" Grid.Column="1"
-               HorizontalAlignment = "Left" VerticalAlignment = "Top"  
-               Text="{Binding SelectedItem.Content, ElementName=basicListBox1}" />
+            <TextBox Height="23"
+                     x:Name="textBox1"
+                     Width="200"
+                     Margin="10"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Text="{Binding SelectedItem.Content, ElementName=basicListBox1}"/>
 
-            <CheckBox Name = "PCheckBox" Margin = "10" Content = "Checked Me" Grid.Row="2" Grid.Column="0" />
-            <Popup IsOpen = "{Binding ElementName = PCheckBox,Path = IsChecked}"    
-                   PlacementTarget = "{Binding ElementName = PCheckBox}"
-                   AllowsTransparency = "True" PopupAnimation = "Slide">
+            <CheckBox Name="PCheckBox"
+                      Margin="10"
+                      Content="Checked Me"
+                      Grid.Row="2"
+                      Grid.Column="0"/>
+            <Popup IsOpen="{Binding ElementName = PCheckBox,Path = IsChecked}"
+                   PlacementTarget="{Binding ElementName = PCheckBox}"
+                   AllowsTransparency="True"
+                   PopupAnimation="Slide">
 
-              <Canvas Width = "125" Height = "100" Background = "LightGray">
+              <Canvas Width="125"
+                      Height="100"
+                      Background="LightGray">
                 <Canvas.RenderTransform>
-                  <RotateTransform x:Name = "theTransform" CenterX="0" CenterY="0" Angle="0" />
+                  <RotateTransform x:Name="theTransform"
+                                   CenterX="0"
+                                   CenterY="0"
+                                   Angle="0"/>
                 </Canvas.RenderTransform>
-                <TextBlock TextWrapping = "Wrap" Foreground = "Blue"
-                          Text = "Hi, this is Popup" />
+                <TextBlock TextWrapping="Wrap"
+                           Foreground="Blue"
+                           Text="Hi, this is Popup"/>
               </Canvas>
 
             </Popup>
 
-            <StackPanel x:Name = "LayoutRoot" Margin = "20" Grid.Row="3" Grid.Column="0">
+            <StackPanel x:Name="LayoutRoot"
+                        Margin="20"
+                        Grid.Row="3"
+                        Grid.Column="0">
 
-              <Border BorderThickness = "5" BorderBrush = "Green">
-                <StackPanel Background = "White">
-                  <TextBlock HorizontalAlignment = "Center" Margin = "10"  
-                  Text = "Value-Based Progress Bar" />
-                  <ProgressBar x:Name = "pg1" Value = "100"  Margin = "10" Maximum = "200"  
-                  Height = "15" IsIndeterminate = "False" />
+              <Border BorderThickness="5"
+                      BorderBrush="Green">
+                <StackPanel Background="White">
+                  <TextBlock HorizontalAlignment="Center"
+                             Margin="10"
+                             Text="Value-Based Progress Bar"/>
+                  <ProgressBar x:Name="pg1"
+                               Value="100"
+                               Margin="10"
+                               Maximum="200"
+                               Height="15"
+                               IsIndeterminate="False"/>
                 </StackPanel>
               </Border>
 
-              <Border BorderThickness = "5" BorderBrush = "Green">
-                <StackPanel Background = "White">
-                  <TextBlock HorizontalAlignment = "Center"  
-                  Margin = "10" Text = "Indeterminate Progress Bar" />
-                  <ProgressBar x:Name = "pg2" Margin = "10" Height = "15"  
-                  IsIndeterminate = "True" />
+              <Border BorderThickness="5"
+                      BorderBrush="Green">
+                <StackPanel Background="White">
+                  <TextBlock HorizontalAlignment="Center"
+                             Margin="10"
+                             Text="Indeterminate Progress Bar"/>
+                  <ProgressBar x:Name="pg2"
+                               Margin="10"
+                               Height="15"
+                               IsIndeterminate="True"/>
                 </StackPanel>
               </Border>
 
             </StackPanel>
 
-            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+            <StackPanel Grid.Row="4"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
 
-              <TextBlock  HorizontalAlignment = "Left"  
-                   Margin = "10" TextWrapping = "Wrap" Text = "Gender:"
-                   VerticalAlignment = "Top" />
-              <RadioButton x:Name = "rb1" Content = "Male" HorizontalAlignment = "Left"  
-                           Margin = "10" VerticalAlignment = "Top"  
-                           GroupName = "Gender" Checked = "HandleGender" />
+              <TextBlock  HorizontalAlignment="Left"
+                          Margin="10"
+                          TextWrapping="Wrap"
+                          Text="Gender:"
+                          VerticalAlignment="Top"/>
+              <RadioButton x:Name="rb1"
+                           Content="Male"
+                           HorizontalAlignment="Left"
+                           Margin="10"
+                           VerticalAlignment="Top"
+                           GroupName="Gender"
+                           Checked="HandleGender"/>
 
-              <RadioButton x:Name = "rb2" Content = "Female" HorizontalAlignment = "Left"  
-                         Margin = "10" VerticalAlignment = "Top"  
-                         GroupName = "Gender" Checked = "HandleGender" />
-              <TextBlock x:Name = "textBlock2" HorizontalAlignment = "Left"  
-                         Margin = "10" TextWrapping = "Wrap"  
-                         VerticalAlignment = "Top" Width = "Auto" />
+              <RadioButton x:Name="rb2"
+                           Content="Female"
+                           HorizontalAlignment="Left"
+                           Margin="10"
+                           VerticalAlignment="Top"
+                           GroupName="Gender"
+                           Checked="HandleGender"/>
+              <TextBlock x:Name="textBlock2"
+                         HorizontalAlignment="Left"
+                         Margin="10"
+                         TextWrapping="Wrap"
+                         VerticalAlignment="Top"
+                         Width="Auto"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
-              <TextBlock HorizontalAlignment = "Left"   Margin = "10" TextWrapping = "Wrap" Text = "Marital Status:"
-                   VerticalAlignment = "Top" />
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+              <TextBlock HorizontalAlignment="Left"
+                         Margin="10"
+                         TextWrapping="Wrap"
+                         Text="Marital Status:"
+                         VerticalAlignment="Top"/>
 
-              <RadioButton x:Name = "rb3" Content = "Single" HorizontalAlignment = "Left"
-                             Margin = "10" VerticalAlignment = "Top"  
-                             GroupName = "Status" Checked = "HandleStatus" />
+              <RadioButton x:Name="rb3"
+                           Content="Single"
+                           HorizontalAlignment="Left"
+                           Margin="10"
+                           VerticalAlignment="Top"
+                           GroupName="Status"
+                           Checked="HandleStatus"/>
 
-              <RadioButton x:Name = "radioButton" Content = "Engaged" HorizontalAlignment = "Left"  
-                         Margin = "10" VerticalAlignment = "Top"  
-                         GroupName = "Status"  Checked = "HandleStatus" />
-              <RadioButton x:Name = "radioButton1" Content = "Married"  
-                           GroupName = "Status" HorizontalAlignment = "Left" Margin = "10"
-                           VerticalAlignment = "Top"  Checked = "HandleStatus" />
-              <TextBlock x:Name = "textBlock3" HorizontalAlignment = "Left"  
-                         Margin = "10" TextWrapping = "Wrap" 
-                         VerticalAlignment = "Top" Width = "Auto" />
+              <RadioButton x:Name="radioButton"
+                           Content="Engaged"
+                           HorizontalAlignment="Left"
+                           Margin="10"
+                           VerticalAlignment="Top"
+                           GroupName="Status"
+                           Checked="HandleStatus"/>
+              <RadioButton x:Name="radioButton1"
+                           Content="Married"
+                           GroupName="Status"
+                           HorizontalAlignment="Left"
+                           Margin="10"
+                           VerticalAlignment="Top"
+                           Checked="HandleStatus"/>
+              <TextBlock x:Name="textBlock3"
+                         HorizontalAlignment="Left"
+                         Margin="10"
+                         TextWrapping="Wrap"
+                         VerticalAlignment="Top"
+                         Width="Auto"/>
             </StackPanel>
 
 
 
-            <StackPanel  Grid.Row="6" Grid.Column="0">
+            <StackPanel  Grid.Row="6"
+                         Grid.Column="0">
               <!-- A large TextBlock. -->
-              <TextBlock Width = "300" TextWrapping = "Wrap" Margin = "10"  
-            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac mi ipsum. 
+              <TextBlock Width="300"
+                         TextWrapping="Wrap"
+                         Margin="10"
+                         Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac mi ipsum. 
             Phasellus vel malesuada mauris. Donec pharetra, enim sit amet mattis tincidunt, felis 
             nisi semper lectus, vel porta diam nisi in augue. Pellentesque lacus tortor, aliquam et 
             faucibus id, rhoncus ut justo. Sed id lectus odio, eget pulvinar diam. Suspendisse 
             eleifend ornare libero, in luctus purus aliquet non. Sed interdum, sem vitae rutrum 
-            rhoncus, felis ligula ultrices sem, in eleifend eros ante id neque." />
+            rhoncus, felis ligula ultrices sem, in eleifend eros ante id neque."/>
 
               <!-- The same large TextBlock, wrapped in a ScrollViewer. -->
 
-              <ScrollViewer Height = "200" Width = "200"  
-            HorizontalScrollBarVisibility = "Auto" VerticalScrollBarVisibility = "Auto">
+              <ScrollViewer Height="200"
+                            Width="200"
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto">
 
-                <TextBlock Width = "300" TextWrapping = "Wrap" 
-               Text = " This license governs use of code marked as sample or example available 
+                <TextBlock Width="300"
+                           TextWrapping="Wrap"
+                           Text=" This license governs use of code marked as sample or example available 
                on this web site without a license agreement, as provided under the section above 
                titled NOTICE SPECIFIC TO SOFTWARE AVAILABLE ON THIS WEB SITE. If you use such 
                code (the software), you accept this license. If you do not accept the license, 
@@ -582,7 +751,7 @@
                Pellentesque lacus tortor, aliquam et faucibus id, rhoncus ut justo. Sed id 
                lectus odio, eget pulvinar diam. Suspendisse eleifend ornare libero, in luctus 
                purus aliquet non. Sed interdum, sem vitae rutrum rhoncus, felis ligula ultrices 
-               sem, in eleifend eros ante id neque." />
+               sem, in eleifend eros ante id neque."/>
 
               </ScrollViewer>
 
@@ -614,91 +783,171 @@
               <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0">
-              <TextBlock Text = "Slider" Margin = "10" />
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0">
+              <TextBlock Text="Slider"
+                         Margin="10"/>
 
-              <Slider x:Name = "basicSlider1" Minimum = "0" Maximum = "100" TickFrequency = "2" Width="500"
-                      TickPlacement = "BottomRight" ValueChanged = "basicSlider1Changed" Margin = "10">
+              <Slider x:Name="basicSlider1"
+                      Minimum="0"
+                      Maximum="100"
+                      TickFrequency="2"
+                      Width="500"
+                      TickPlacement="BottomRight"
+                      ValueChanged="basicSlider1Changed"
+                      Margin="10">
                 <Slider.Background>
-                  <LinearGradientBrush EndPoint = "0.5,1" StartPoint = "0.5,0">
-                    <GradientStop Color = "Black" Offset = "0" />
-                    <GradientStop Color = "#FFF5DCDC" Offset = "1" />
+                  <LinearGradientBrush EndPoint="0.5,1"
+                                       StartPoint="0.5,0">
+                    <GradientStop Color="Black"
+                                  Offset="0"/>
+                    <GradientStop Color="#FFF5DCDC"
+                                  Offset="1"/>
                   </LinearGradientBrush>
                 </Slider.Background>
               </Slider>
 
-              <TextBlock x:Name = "basicTblk" Margin = "10" Text = "Current value: 0" />
+              <TextBlock x:Name="basicTblk"
+                         Margin="10"
+                         Text="Current value: 0"/>
             </StackPanel>
 
-            <TextBlock FontFamily = "Verdana" Grid.Row="1" Grid.Column="0"
-         LineStackingStrategy = "MaxHeight" LineHeight = "10" Width = "500"  
-         TextWrapping = "Wrap" Background = "#FFE2B1B1" Margin = "48,8,48,10">
+            <TextBlock FontFamily="Verdana"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       LineStackingStrategy="MaxHeight"
+                       LineHeight="10"
+                       Width="500"
+                       TextWrapping="Wrap"
+                       Background="#FFE2B1B1"
+                       Margin="48,8,48,10">
 			
-         Use the <Run FontSize = "30">LineStackingStrategy</Run> property to determine how
-            a line box is created for each line. A value of <Run FontSize = "20">MaxHeight</Run> 
+         Use the <Run FontSize="30">LineStackingStrategy</Run> property to determine how
+            a line box is created for each line. A value of <Run FontSize="20">MaxHeight</Run> 
             specifies that the stack height is the smallest value that contains all the inline 
-            elements on that line when those elements are properly aligned. A value of <Run 
-            FontSize = "20"> BlockLineHeight</Run> specifies that the stack height is 
+            elements on that line when those elements are properly aligned. A value of <Run
+                FontSize="20"> BlockLineHeight</Run> specifies that the stack height is 
             determined by the block element LineHeight property value.
             </TextBlock>
 
-            <StackPanel Grid.Row="2" Grid.Column="0">
-              <ToggleButton x:Name = "tb" Content = "Toggle"
-                 Checked = "HandleCheckTbn" Unchecked = "HandleUncheckBtn" Margin = "10"
-                 Width = "108" HorizontalAlignment = "Center" />
-              <TextBlock x:Name = "basicTbl8" Margin = "10" Width = "300" 
-                 HorizontalAlignment = "Center" FontSize = "24" Background = "#FFFDE0E0" />
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0">
+              <ToggleButton x:Name="tb"
+                            Content="Toggle"
+                            Checked="HandleCheckTbn"
+                            Unchecked="HandleUncheckBtn"
+                            Margin="10"
+                            Width="108"
+                            HorizontalAlignment="Center"/>
+              <TextBlock x:Name="basicTbl8"
+                         Margin="10"
+                         Width="300"
+                         HorizontalAlignment="Center"
+                         FontSize="24"
+                         Background="#FFFDE0E0"/>
             </StackPanel>
 
 
-            <Grid Grid.Row="3" Grid.Column="0">
-              <TextBlock x:Name = "basicTbl9" HorizontalAlignment = "Left"  
-                       Margin = "10" TextWrapping = "Wrap"  
-                       Text = "User Name" VerticalAlignment = "Top" />
+            <Grid Grid.Row="3"
+                  Grid.Column="0">
+              <TextBlock x:Name="basicTbl9"
+                         HorizontalAlignment="Left"
+                         Margin="10"
+                         TextWrapping="Wrap"
+                         Text="User Name"
+                         VerticalAlignment="Top"/>
 
-              <TextBlock x:Name = "basicTbl10" HorizontalAlignment = "Left"  
-                     Margin = "10 50 10 10" TextWrapping = "Wrap"  
-                     Text = "Password" VerticalAlignment = "Top" />
+              <TextBlock x:Name="basicTbl10"
+                         HorizontalAlignment="Left"
+                         Margin="10 50 10 10"
+                         TextWrapping="Wrap"
+                         Text="Password"
+                         VerticalAlignment="Top"/>
 
-              <TextBox x:Name = "basicTbl11" HorizontalAlignment = "Left"  
-                   Height = "24" Margin = "136,10,0,0" TextWrapping = "Wrap"  
-                   VerticalAlignment = "Top" Width = "219"  
-                   ToolTipService.ToolTip  =  "Enter User Name" />
+              <TextBox x:Name="basicTbl11"
+                       HorizontalAlignment="Left"
+                       Height="24"
+                       Margin="136,10,0,0"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"
+                       Width="219"
+                       ToolTipService.ToolTip="Enter User Name"/>
 
-              <PasswordBox x:Name = "passwordBox" HorizontalAlignment = "Left"  
-                   Margin = "136,46,0,0" VerticalAlignment = "Top" Width = "219"  
-                   Height = "24" ToolTipService.ToolTip  =  "Enter Password" />
+              <PasswordBox x:Name="passwordBox"
+                           HorizontalAlignment="Left"
+                           Margin="136,46,0,0"
+                           VerticalAlignment="Top"
+                           Width="219"
+                           Height="24"
+                           ToolTipService.ToolTip="Enter Password"/>
 
-               <Button x:Name = "button" Content = "Log in" HorizontalAlignment = "Left"  
-                   Margin = "136,80,0,10" VerticalAlignment = "Top" Width = "75"  
-                   ToolTipService.ToolTip = "Log in" />
+              <Button x:Name="button"
+                      Content="Log in"
+                      HorizontalAlignment="Left"
+                      Margin="136,80,0,10"
+                      VerticalAlignment="Top"
+                      Width="75"
+                      ToolTipService.ToolTip="Log in"/>
             </Grid>
-            <DockPanel LastChildFill = "True" Grid.Row="4" Grid.Column="0" >
-              <Button Content = "Top" DockPanel.Dock = "Top" Click = "DockerPanel_Click" />
-              <Button Content = "Bottom" DockPanel.Dock = "Bottom" Click = "DockerPanel_Click" />
-              <Button Content = "Left" Click = "DockerPanel_Click" />
-              <Button Content = "Right" DockPanel.Dock = "Right" Click = "DockerPanel_Click" />
-              <Button Content = "Center" Click = "DockerPanel_Click" />
+            <DockPanel LastChildFill="True"
+                       Grid.Row="4"
+                       Grid.Column="0">
+              <Button Content="Top"
+                      DockPanel.Dock="Top"
+                      Click="DockerPanel_Click"/>
+              <Button Content="Bottom"
+                      DockPanel.Dock="Bottom"
+                      Click="DockerPanel_Click"/>
+              <Button Content="Left"
+                      Click="DockerPanel_Click"/>
+              <Button Content="Right"
+                      DockPanel.Dock="Right"
+                      Click="DockerPanel_Click"/>
+              <Button Content="Center"
+                      Click="DockerPanel_Click"/>
             </DockPanel>
-            <StackPanel Grid.Row="5" Grid.Column="0">
-              <Rectangle x:Name = "mrRec" Fill = "AliceBlue" 
-                   MouseEnter = "OnMouseEnter" MouseLeave = "OnMouseLeave"  
-                   MouseMove = "OnMouseMove" MouseDown = "OnMouseDown" Height = "100" Margin = "20">
-                        </Rectangle>
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0">
+              <Rectangle x:Name="mrRec"
+                         Fill="AliceBlue"
+                         MouseEnter="OnMouseEnter"
+                         MouseLeave="OnMouseLeave"
+                         MouseMove="OnMouseMove"
+                         MouseDown="OnMouseDown"
+                         Height="100"
+                         Margin="20">
+              </Rectangle>
 
-              <TextBlock x:Name = "basicTbl12" Height = "31" HorizontalAlignment = "Left" 
-                   Width = "250" Margin = "10" />
-              <TextBlock x:Name = "basicTbl13" Height = "31" HorizontalAlignment = "Left"  
-                           Width = "250" Margin = "10" />
-              <TextBlock x:Name = "basicTbl14" Height = "31" HorizontalAlignment = "Left"  
-                           Width = "250" Margin = "10" />
+              <TextBlock x:Name="basicTbl12"
+                         Height="31"
+                         HorizontalAlignment="Left"
+                         Width="250"
+                         Margin="10"/>
+              <TextBlock x:Name="basicTbl13"
+                         Height="31"
+                         HorizontalAlignment="Left"
+                         Width="250"
+                         Margin="10"/>
+              <TextBlock x:Name="basicTbl14"
+                         Height="31"
+                         HorizontalAlignment="Left"
+                         Width="250"
+                         Margin="10"/>
 
             </StackPanel>
 
-            <StackPanel Orientation = "Horizontal" KeyDown = "OnStackPanelKeyDown" Grid.Row="6" Grid.Column="0">
-              <TextBox Width = "400" Height = "30" Margin = "10"/>
-              <Button Click = "OnInputBtnClick"
-            Content = "Open" Margin = "10" Width = "50" Height = "30"/>
+            <StackPanel Orientation="Horizontal"
+                        KeyDown="OnStackPanelKeyDown"
+                        Grid.Row="6"
+                        Grid.Column="0">
+              <TextBox Width="400"
+                       Height="30"
+                       Margin="10"/>
+              <Button Click="OnInputBtnClick"
+                      Content="Open"
+                      Margin="10"
+                      Width="50"
+                      Height="30"/>
             </StackPanel>
 
           </Grid>
@@ -707,6 +956,59 @@
 
 
       </TabItem>
+
+      <TabItem Header="基础控件5">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="basicTb8"
+                     Grid.Row="0"
+                     Grid.Column="0"
+                     HorizontalAlignment="Left"
+                     Height="180"
+                     Margin="10"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Top"
+                     Width="300"/>
+
+            <Label Margin = "2" Grid.Row="1" Grid.Column="0" >_Name:</Label>
+
+
+            <!--person是属性<get/set>，而不是字段-->
+            <!--这里表示绑定到this.DataContext(==this)的person属性的Name属性-->
+            <TextBox Name = "nameText" Grid.Row="1" Grid.Column="1" Margin = "10" 
+                    Text = "{Binding person.Name, Mode=TwoWay}"/>
+
+            <Label Margin = "2" Grid.Row = "2" Grid.Column="0">_Age:</Label>
+
+            <TextBox Name = "ageText" Grid.Column = "1" Grid.Row = "2" Margin = "10" 
+                    Text = "{Binding person.Age, Mode = TwoWay}"/>
+
+            <StackPanel Grid.Row = "3" Grid.Column="0" Grid.ColumnSpan = "2">
+              <Button Content = "_Show..." Click="showBtn_Click" />
+            </StackPanel>
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+
+
     </TabControl>
 
   </Grid>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,6 +23,18 @@ namespace FirstWPF
   /// </summary>
   public partial class Test : Window
   {
+
+    // WPF的data Binding只能绑定属性，不能绑定字段
+    // 所以必须是有{get;set}
+    // 这样 Text = "{Binding person.Name, Mode=TwoWay} 才可以
+    // 如果没有{get; set}，以上绑定失败
+    // 这个Person没有实现INotifyPropertyChanged
+    // INotifyPropertyChanged 是在属性值发生变化时通知绑定的控件
+    // 但是在 WPF 中，数据绑定的默认行为是将控件的值更新到数据源对象中，即使数据源对象没有实现 INotifyPropertyChanged 接口。INotifyPropertyChanged 主要用于在数据源对象的属性值发生变化时通知绑定的控件更新 UI。
+    public Person person { get; set; } = new Person { Name = "John", ID = "1", Age = 42 };
+
+
+
     public Test()
     {
       InitializeComponent();
@@ -29,6 +42,34 @@ namespace FirstWPF
       MenList.Items.Add(new Person() { Name = "John", ID = "1", Age = 42 });
       MenList.Items.Add(new Person() { Name = "Paul", ID = "2", Age = 39 });
       MenList.Items.Add(new Person() { Name = "George", ID = "3", Age = 29 });
+
+      //CommandBindings.Add(new CommandBinding(ApplicationCommands.New, NewExecuted, CanNew));
+      //CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, OpenExecuted, CanOpen));
+      //CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, SaveExecuted, CanSave));
+
+      string[] args = App.Args;
+      if (args != null && args.Length > 0)
+      {
+        try
+        {
+          using (StreamReader sr = new StreamReader(args[0]))
+          {
+            string line = sr.ReadToEnd();
+            basicTb8.AppendText(line);
+            basicTb8.AppendText("\n");
+          }
+        }
+        catch (Exception ex)
+        {
+          basicTb8.AppendText("The file could not be read: ");
+          basicTb8.AppendText("\n");
+          basicTb8.AppendText(ex.Message);
+        }
+      }
+
+      //this.DataContext = person;
+      this.DataContext = this; // Binding person.Name 相当于 WPF的 Name的Get/Set和 this.person的get/Set一致
+
     }
 
 
@@ -63,6 +104,40 @@ namespace FirstWPF
 
     #endregion
 
+
+    #region 命令
+
+    private void NewExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+      MessageBox.Show("New command is executed");
+    }
+
+    private void CanNew(object sender, CanExecuteRoutedEventArgs e)
+    {
+      e.CanExecute = true;
+    }
+
+    private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+      MessageBox.Show("Open command is executed");
+    }
+
+    private void CanOpen(object sender, CanExecuteRoutedEventArgs e)
+    {
+      e.CanExecute = true;
+    }
+
+    private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+      MessageBox.Show("Save command is executed");
+    }
+
+    private void CanSave(object sender, CanExecuteRoutedEventArgs e)
+    {
+      e.CanExecute = true;
+    }
+
+    #endregion
 
     #region 基础控件
     private void basicBtn_Click(object sender, RoutedEventArgs e)
@@ -282,7 +357,7 @@ namespace FirstWPF
     {
       Rectangle source = e.Source as Rectangle;
       Point pnt = e.GetPosition(mrRec);
-      
+
       if (source != null)
       {
         source.Fill = Brushes.Beige;
@@ -292,23 +367,29 @@ namespace FirstWPF
     }
     private void OnStackPanelKeyDown(object sender, KeyEventArgs e)
     {
+      MessageBox.Show("OnStackPane");
       if (e.Key == Key.O && Keyboard.Modifiers == ModifierKeys.Control)
       {
-        MessageBox.Show("Do you want to open a file?");
-        e.Handled = true;
+        MessageBox.Show("KeyDown: Do you want to open a file?");
+        //e.Handled = true;
       }
     }
 
     private void OnInputBtnClick(object sender, RoutedEventArgs e)
     {
-      MessageBox.Show("Do you want to open a file?");
-      e.Handled = true;
+      MessageBox.Show("BtnClick: Do you want to open a file?");
+      //e.Handled = true;
     }
+
 
 
     #endregion
 
-
+    private void showBtn_Click(object sender, RoutedEventArgs e)
+    {
+      string msg = person.Name + " ID: " + person.ID + " Age: " + person.Age;
+      MessageBox.Show(msg);
+    }
   }
 
 
@@ -323,6 +404,7 @@ namespace FirstWPF
 
   public class Employee : INotifyPropertyChanged
   {
+    // •	实现了 INotifyPropertyChanged 接口，以便在属性值发生变化时通知绑定的控件。
     private string name;
     private string title;
     private bool wasReElected;
@@ -369,7 +451,14 @@ namespace FirstWPF
         RaisePropertyChanged();
       }
     }
-
+    /*
+     ObservableCollection<T> 
+    是 .NET 中的一个集合类，位于 System.Collections.ObjectModel 命名空间中。
+    它继承自 Collection<T>，
+    并实现了 INotifyCollectionChanged 和 INotifyPropertyChanged 接口。
+    这意味着当集合中的项发生变化（如添加、删除或修改项）时，
+    它会通知绑定到该集合的 UI 控件，从而自动更新 UI。
+ */
     public static ObservableCollection<Employee> GetEmployees()
     {
       var employees = new ObservableCollection<Employee>();
@@ -397,6 +486,12 @@ namespace FirstWPF
 
   public class Person
   {
+    /**
+      虽然 INotifyPropertyChanged 不是必需的，但它在以下情况下非常有用：
+      1.	当你希望在数据源对象的属性值发生变化时自动更新绑定的控件。
+      2.	当你希望在多个控件之间共享数据源对象，并希望所有控件在数据源对象的属性值发生变化时自动更新。
+      在你的示例中，由于你只是在按钮点击时读取 person.Name 的当前值，因此不需要 INotifyPropertyChanged 也能正常工作。但如果你希望在 person.Name 发生变化时自动更新 UI，则需要实现 INotifyPropertyChanged。
+     */
     public string Name { get; set; }
     public string ID { get; set; }
     public int Age { get; set; }
