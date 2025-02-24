@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:FirstWPF"
              StartupUri="Test.xaml"
              Startup="Application_Startup"> 
-  <Application.Resources>
-         
-    </Application.Resources>
+  <Application.Resources >
+    <ResourceDictionary Source="/ResourceDictionaries/DictionaryWithBrush.xaml"/>
+  </Application.Resources>
 </Application>

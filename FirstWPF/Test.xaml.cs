@@ -382,14 +382,36 @@ namespace FirstWPF
     }
 
 
-
-    #endregion
-
     private void showBtn_Click(object sender, RoutedEventArgs e)
     {
       string msg = person.Name + " ID: " + person.ID + " Age: " + person.Age;
       MessageBox.Show(msg);
     }
+
+    private void changeResourceButton_Click(object sender, RoutedEventArgs e)
+    {
+      //if (this.Resources["brushResource"] is SolidColorBrush brush)
+      //{
+      //  // 颜色都会变
+      //  //brush.Color = brush.Color == Colors.Blue ? Colors.Red : Colors.Blue;
+
+      //  // static不会变
+      //  this.Resources["brushResource"] = new SolidColorBrush(Colors.Red);
+      //}
+
+      if (Application.Current.Resources["brushResource"] is SolidColorBrush brush)
+      {
+        // 颜色都会变
+        //brush.Color = brush.Color == Colors.Blue ? Colors.Red : Colors.Blue;
+        // static不会变
+        Application.Current.Resources["brushResource"] = new SolidColorBrush(Colors.Red);
+
+      }
+    }
+
+    #endregion
+
+
   }
 
 

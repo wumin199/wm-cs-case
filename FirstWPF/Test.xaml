@@ -25,6 +25,8 @@
       </ObjectDataProvider.MethodParameters>
 
     </ObjectDataProvider>
+
+    <!--<SolidColorBrush x:Key = "brushResource" Color = "Blue" />-->
   </Window.Resources>
 
   <Window.CommandBindings>
@@ -1002,6 +1004,13 @@
 
             <StackPanel Grid.Row = "3" Grid.Column="0" Grid.ColumnSpan = "2">
               <Button Content = "_Show..." Click="showBtn_Click" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Grid.Column="0">
+              <Rectangle Height = "50" Margin = "10" Fill = "{StaticResource brushResource}" />
+              <Rectangle Height = "50" Margin = "10" Fill = "{DynamicResource brushResource}" />
+              <Button x:Name = "changeResourceButton"
+                      Content = "_Change Resource" Click = "changeResourceButton_Click" />
             </StackPanel>
           </Grid>
         </ScrollViewer>
