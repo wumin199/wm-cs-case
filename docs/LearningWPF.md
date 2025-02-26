@@ -1,5 +1,5 @@
 
-https://www.tutorialspoint.com/wpf/wpf_datagrid.htm
+https://www.tutorialspoint.com/wpf/wpf_triggers.htm
 
 prism架构
 
