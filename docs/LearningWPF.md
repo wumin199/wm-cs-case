@@ -24,6 +24,14 @@ DevExpress
 
 ## 重要概念
 
+style偏样式（如批量修改按钮的background和fontsize），template偏创建新控件（如自定义带圆弧的按钮）
+
+
+- Styles can only change the appearance of your control with default properties of that control.
+
+- With templates, you can access more parts of a control than in styles. You can also specify both existing and new behavior of a control.
+
+
 ### 依赖属性
 
 

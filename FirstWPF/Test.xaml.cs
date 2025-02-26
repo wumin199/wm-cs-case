@@ -33,6 +33,9 @@ namespace FirstWPF
     // 但是在 WPF 中，数据绑定的默认行为是将控件的值更新到数据源对象中，即使数据源对象没有实现 INotifyPropertyChanged 接口。INotifyPropertyChanged 主要用于在数据源对象的属性值发生变化时通知绑定的控件更新 UI。
     public Person person { get; set; } = new Person { Name = "John", ID = "1", Age = 42 };
 
+    public List<Person> People { get; set; } = new List<Person>();
+
+
 
 
     public Test()
@@ -68,8 +71,14 @@ namespace FirstWPF
       }
 
       //this.DataContext = person;
-      this.DataContext = this; // Binding person.Name 相当于 WPF的 Name的Get/Set和 this.person的get/Set一致
+      //this.DataContext = this; // Binding person.Name 相当于 WPF的 Name的Get/Set和 this.person的get/Set一致
 
+
+      People.Add(new Person { Name = "Veli", Age = 35 });
+      People.Add(new Person { Name = "Deli", Age = 45 });
+      People.Add(new Person { Name = "Meli", Age = 55 });
+
+      this.DataContext = this;
     }
 
 
@@ -409,9 +418,13 @@ namespace FirstWPF
       }
     }
 
+
     #endregion
 
+    private void DataBindingClick(object sender, RoutedEventArgs e)
+    {
 
+    }
   }
 
 

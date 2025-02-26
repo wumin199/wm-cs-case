@@ -15,6 +15,84 @@
 
   <Window.Resources>
 
+
+    <ControlTemplate x:Key = "ButtonTemplate" TargetType = "Button">
+
+      <Grid>
+        <Ellipse x:Name = "ButtonEllipse" Height = "100" Width = "150" >
+          <Ellipse.Fill>
+            <LinearGradientBrush StartPoint = "0,0.2" EndPoint = "0.2,1.4">
+              <GradientStop Offset = "0" Color = "Red" />
+              <GradientStop Offset = "1" Color = "Orange" />
+            </LinearGradientBrush>
+          </Ellipse.Fill>
+        </Ellipse>
+        <!--将自定义的这个ButtonTemplate的Content绑定到TargetType的Content上-->
+        <ContentPresenter Content = "{TemplateBinding Content}" 
+               HorizontalAlignment = "Center" VerticalAlignment = "Center" />
+      </Grid>
+
+      <ControlTemplate.Triggers>
+
+        <Trigger Property = "IsMouseOver" Value = "True">
+          <Setter TargetName = "ButtonEllipse" Property = "Fill" >
+            <Setter.Value>
+              <LinearGradientBrush StartPoint = "0,0.2" EndPoint = "0.2,1.4">
+                <GradientStop Offset = "0" Color = "YellowGreen" />
+                <GradientStop Offset = "1" Color = "Gold" />
+              </LinearGradientBrush>
+            </Setter.Value>
+          </Setter>
+        </Trigger>
+
+        <Trigger Property = "IsPressed" Value = "True">
+          <Setter Property = "RenderTransform">
+            <Setter.Value>
+              <ScaleTransform ScaleX = "0.8" ScaleY = "0.8" 
+                        CenterX = "0" CenterY = "0"  />
+            </Setter.Value>
+          </Setter>
+          <Setter Property = "RenderTransformOrigin" Value = "0.5,0.5" />
+        </Trigger>
+
+      </ControlTemplate.Triggers>
+
+    </ControlTemplate>
+
+    
+    
+    <!--DataTemplate也是用于定义控件的模板，但是DataTemplate是用于定义数据绑定的模板，用于将数据绑定到控件上。-->
+    <DataTemplate DataType = "{x:Type local:Person}">
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height = "Auto" />
+          <RowDefinition Height = "Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width = "Auto" />
+          <ColumnDefinition Width = "200" />
+        </Grid.ColumnDefinitions>
+
+        <Label Name = "nameLabel"  Content="Name: " Margin = "10"/>
+        <TextBox Name = "nameText" Grid.Column = "1" Margin = "10" 
+               Text = "{Binding Name}"/>
+        <Label Name = "ageLabel" Content="Age: " Margin = "10" Grid.Row = "1"/>
+        <TextBox Name = "ageText" Grid.Column = "1" Grid.Row = "1" Margin = "10" 
+               Text = "{Binding Age}"/>
+      </Grid>
+
+    </DataTemplate>
+
+    <Style x:Key = "myButtonStyle" TargetType = "Button">
+      <Setter Property = "Height" Value = "30" />
+      <Setter Property = "Width" Value = "80" />
+      <Setter Property = "Foreground" Value = "Green" />
+      <Setter Property = "FontSize" Value = "15" />
+      <Setter Property = "Margin" Value = "10" />
+    </Style>
+
     <ObjectDataProvider x:Key="myEnum"
                         MethodName="GetValues"
                         ObjectType="{x:Type core:Enum}">
@@ -25,6 +103,7 @@
       </ObjectDataProvider.MethodParameters>
 
     </ObjectDataProvider>
+    
 
     <!--<SolidColorBrush x:Key = "brushResource" Color = "Blue" />-->
   </Window.Resources>
@@ -763,8 +842,6 @@
         </ScrollViewer>
       </TabItem>
 
-
-
       <TabItem Header="基础控件4">
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
@@ -1012,6 +1089,92 @@
               <Button x:Name = "changeResourceButton"
                       Content = "_Change Resource" Click = "changeResourceButton_Click" />
             </StackPanel>
+
+            <StackPanel Grid.Row="5" Grid.Column="0">
+              <!--可以测试自定义按钮的大小-->
+              <Button Content = "Round Button!"
+                       Template = "{StaticResource ButtonTemplate}" 
+                       Width = "100" Margin = "5" /> 
+              <Button Content = "Default Button!" Height = "40" 
+                       Width = "150" Margin = "5" />
+              </StackPanel>
+            
+            
+            <!--自定义data binding-->
+            <ListBox ItemsSource = "{Binding People}"  Grid.Row="6" Grid.Column="0"/>
+
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="基础控件6">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0">
+              <Button Content = "Button1" Style = "{StaticResource myButtonStyle}" />
+              <Button Content = "Button2" Style = "{StaticResource myButtonStyle}" />
+              <Button Content = "Button3" Style="{StaticResource myButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel Margin = "10" VerticalAlignment = "Top" Grid.Row="1" Grid.Column="0">
+
+              <TextBlock Text = "TextBlock">
+                <TextBlock.Style>
+                  <Style>
+                    <Setter Property = "TextBlock.FontSize" Value = "24" />
+                    <Setter Property = "TextBlock.Width" Value = "400" />
+                    <Setter Property = "TextBlock.Height" Value = "40" />
+                    <Setter Property = "TextBlock.Background" Value = "Gray" />
+                    <Setter Property = "TextBlock.Margin" Value = "10" />
+                  </Style>
+                </TextBlock.Style>
+              </TextBlock>
+
+              <Button Content = "Button">
+                <Button.Style>
+                  <Style>
+                    <Setter Property = "TextBlock.Width" Value = "100" />
+                    <Setter Property = "TextBlock.Height" Value = "40" />
+                    <Setter Property = "TextBlock.Margin" Value = "10" />
+                  </Style>
+                </Button.Style>
+              </Button>
+
+            </StackPanel>
+
+            <StackPanel Margin = "10" Grid.Row="2" Grid.Column="0">
+              <StackPanel.Resources>
+                <Style TargetType = "Button">
+                  <Setter Property = "Foreground" Value = "Blue" />
+                  <Setter Property = "FontStyle" Value = "Italic" />
+                  <Setter Property = "Width" Value = "100" />
+                  <Setter Property = "Height" Value = "40" />
+                  <Setter Property = "Margin" Value = "10" />
+                </Style>
+              </StackPanel.Resources>
+
+              <Button>Button 1</Button>
+              <Button>Button 2</Button>
+              <Button Foreground = "red">Button 3</Button>
+            </StackPanel>
+
           </Grid>
         </ScrollViewer>
       </TabItem>
