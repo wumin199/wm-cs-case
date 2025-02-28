@@ -7,9 +7,10 @@
         xmlns:views="clr-namespace:FirstWPF.Tutorial.DependencyPropertity"
         xmlns:re="clr-namespace:FirstWPF.Tutorial.RouteEvent"
         xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:pp="clr-namespace:FirstWPF.Properties"
         mc:Ignorable="d"
         ButtonBase.Click="RouteWindow_Click"
-        Title="Test"
+        Title="{x:Static pp:Resources.Title}"
         Height="1000"
         Width="1500">
 
@@ -1247,6 +1248,60 @@
             </Button>
 
             <local:MyUserControl Grid.Row="4" Grid.Column="0" />
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="基础控件7">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+              <TextBox HorizontalAlignment = "Left" Height = "23" 
+                   Margin = "128,45,0,0" TextWrapping = "Wrap" VerticalAlignment = "Top" Width = "304"/>
+
+                        <Label  Content = "{x:Static pp:Resources.Name}"
+                   HorizontalAlignment = "Left" Margin = "52,45,0,0" VerticalAlignment = "Top" Width = "86"/>
+
+                        <TextBox  HorizontalAlignment = "Left" Height = "23" 
+                   Margin = "128,102,0,0" TextWrapping = "Wrap" VerticalAlignment = "Top" Width = "304"/>
+
+              <Label Content = "{x:Static pp:Resources.Address}" 
+                   HorizontalAlignment = "Left" Margin = "52,102,0,0" VerticalAlignment = "Top" Width = "86"/>
+
+                        <TextBox x:Name = "textBox2" HorizontalAlignment = "Left" Height = "23" 
+                   Margin = "128,157,0,0" TextWrapping = "Wrap" VerticalAlignment = "Top" Width = "80"/>
+
+              <Label  Content = "{x:Static pp:Resources.Age}" 
+                   HorizontalAlignment = "Left" Margin = "52,157,0,0" VerticalAlignment = "Top" Width = "86"/>
+
+              <Button  Content = "{x:Static pp:Resources.OK_Button}" 
+                   HorizontalAlignment = "Left" Margin = "163,241,0,0" VerticalAlignment = "Top" Width = "75"/>
+
+              <Button Content = "{x:Static pp:Resources.Cancel_Button}" 
+                   HorizontalAlignment = "Left" Margin = "282,241,0,0" VerticalAlignment = "Top" Width = "75"/>
+
+              <Button Content = "{x:Static pp:Resources.Help_Button}" 
+                   HorizontalAlignment = "Left" Margin = "392,241,0,0" VerticalAlignment = "Top" Width = "75"/>
+            </Grid>
+
+
           </Grid>
         </ScrollViewer>
       </TabItem>

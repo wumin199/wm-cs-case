@@ -9,6 +9,12 @@ namespace FirstWPF;
 /// </summary>
 public partial class App : Application
 {
+
+  App()
+  {
+    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+    //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
+  }
   public static string[] Args;
   private void Application_Startup(object sender, StartupEventArgs e)
   {
@@ -17,6 +23,9 @@ public partial class App : Application
     {
       Args = e.Args;
     }
+
+    
+
   }
 }
 
