@@ -106,6 +106,20 @@
     
 
     <!--<SolidColorBrush x:Key = "brushResource" Color = "Blue" />-->
+
+
+    <Style x:Key = "TriggerStyle" TargetType = "Button">
+      <Setter Property = "Foreground" Value = "Blue" />
+      <Style.Triggers>
+        <Trigger Property = "IsMouseOver" Value = "True">
+          <Setter Property = "Foreground" Value = "Green" />
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+
+    
+    
+    
   </Window.Resources>
 
   <Window.CommandBindings>
@@ -1123,7 +1137,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -1175,6 +1189,64 @@
               <Button Foreground = "red">Button 3</Button>
             </StackPanel>
 
+
+            <Button Width = "100" Height = "70" Grid.Row="3" Grid.Column="0" Margin="10"
+                     Style = "{StaticResource TriggerStyle}" Content = "Trigger"/>
+
+            <StackPanel HorizontalAlignment = "Center" Grid.Row="3" Grid.Column="1">
+              <CheckBox x:Name = "redColorCheckBox" 
+                    Content = "Set red as foreground color" Margin = "20"/>
+
+              <TextBlock VerticalAlignment = "Center" 
+                  Text = "Event Trigger" FontSize = "24" Margin = "20">
+                <TextBlock.Style>
+                  <Style>
+                    <Style.Triggers>
+                      <DataTrigger Binding = "{Binding ElementName = redColorCheckBox, Path = IsChecked}" 
+                                  Value = "true">
+                        <Setter Property = "TextBlock.Foreground" Value = "Red"/>
+                        <Setter Property = "TextBlock.Cursor" Value = "Hand" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </TextBlock.Style>
+              </TextBlock>
+
+            </StackPanel>
+
+            <Button Content = "Click Me" Width = "60" Height = "30"  Grid.Row="3" Grid.Column="2">
+
+              <Button.Triggers>
+                <EventTrigger RoutedEvent = "Button.Click">
+                  <EventTrigger.Actions>
+                    <BeginStoryboard>
+                      <Storyboard>
+
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty = 
+                           "Width" Duration = "0:0:4">
+                          <LinearDoubleKeyFrame Value = "60" KeyTime = "0:0:0"/>
+                          <LinearDoubleKeyFrame Value = "120" KeyTime = "0:0:1"/>
+                          <LinearDoubleKeyFrame Value = "200" KeyTime = "0:0:2"/>
+                          <LinearDoubleKeyFrame Value = "300" KeyTime = "0:0:3"/>
+                        </DoubleAnimationUsingKeyFrames>
+
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty = "Height" 
+                           Duration = "0:0:4">
+                          <LinearDoubleKeyFrame Value = "30" KeyTime = "0:0:0"/>
+                          <LinearDoubleKeyFrame Value = "40" KeyTime = "0:0:1"/>
+                          <LinearDoubleKeyFrame Value = "80" KeyTime = "0:0:2"/>
+                          <LinearDoubleKeyFrame Value = "150" KeyTime = "0:0:3"/>
+                        </DoubleAnimationUsingKeyFrames>
+
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </EventTrigger.Actions>
+                </EventTrigger>
+              </Button.Triggers>
+
+            </Button>
+
+            <local:MyUserControl Grid.Row="4" Grid.Column="0" />
           </Grid>
         </ScrollViewer>
       </TabItem>
