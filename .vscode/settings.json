@@ -1,0 +1,5 @@
+{
+    // Ctrl + Shift + P: .NET: Restart Language Server
+    // restart vscode
+    // "csharp.suppressDotnetRestoreNotification": true,
+}

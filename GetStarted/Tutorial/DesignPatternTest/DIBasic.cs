@@ -1,4 +1,4 @@
-namespace DIBasics.Example;
+namespace Tutorial.DIBasics;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
