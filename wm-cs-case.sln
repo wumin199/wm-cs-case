@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppLogger", "AppLogger\AppL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWPF", "FirstWPF\FirstWPF.csproj", "{0C8AA85A-BEDA-42CF-B5A7-636F775EFAD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismApp", "PrismApp\PrismApp.csproj", "{79D16257-81B3-4342-ABFF-2968B5CDBA08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismDemo", "PrismDemo\PrismDemo.csproj", "{F3A31130-214F-400E-9178-60EC105DCAD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{0C8AA85A-BEDA-42CF-B5A7-636F775EFAD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C8AA85A-BEDA-42CF-B5A7-636F775EFAD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C8AA85A-BEDA-42CF-B5A7-636F775EFAD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79D16257-81B3-4342-ABFF-2968B5CDBA08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79D16257-81B3-4342-ABFF-2968B5CDBA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79D16257-81B3-4342-ABFF-2968B5CDBA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79D16257-81B3-4342-ABFF-2968B5CDBA08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A31130-214F-400E-9178-60EC105DCAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A31130-214F-400E-9178-60EC105DCAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A31130-214F-400E-9178-60EC105DCAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A31130-214F-400E-9178-60EC105DCAD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

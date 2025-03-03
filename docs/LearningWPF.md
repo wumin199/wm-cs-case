@@ -32,6 +32,11 @@ style偏样式（如批量修改按钮的background和fontsize），template偏�
 - With templates, you can access more parts of a control than in styles. You can also specify both existing and new behavior of a control.
 
 
+- Button的基类是ButtonBase，ButtonBase的基类是ContentControl，ContentControl的基类是Control
+  - [Control基类](https://www.wpfsoft.com/2023/08/22/1093.html)
+  - [ContentControl类（内容控件）](https://www.wpfsoft.com/2023/08/22/1155.html)
+  - ContentControl它有一个Content属性，关键是这个属性的类型是object
+
 ### 依赖属性
 
 
@@ -74,3 +79,4 @@ dotnet run
 - [教程：使用 C 创建 WPF 应用程序](https://learn.microsoft.com/zh-cn/visualstudio/get-started/csharp/tutorial-wpf)(拖拽控件)
 - [教程：使用 .NET 创建新的 WPF 应用](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/get-started/create-app-visual-studio?view=netdesktop-8.0)(直接编写xaml)
 - [WPF-教程](https://www.tutorialspoint.com/wpf/index.htm)
+- [WPF中文网](https://www.wpfsoft.com/)

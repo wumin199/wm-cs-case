@@ -6,12 +6,18 @@
 2. Prism使用依赖注入模式，因此需要了解依赖注入和IoC容器
 3. Prism提供了一种事件聚合器，使得各个模块之间可以进行松耦合的通信。
 4. xaml自动格式化
+5. CommunityToolkit
+6. Prism.Unity
+7. DevExpress
+8. Ribbon
 
 
 ## 笔记
 
-1. shell就是页面的意思
+1. shell就是页面(Main Application Window)的意思
 2. Prism.Wpf依赖 Prism.Core; Prism.DryIoc/Prism.Unity(依赖注入容器), 这2个依赖Prism.Wpf和Prism.Core。安装Prism时，只需要安装Prism.DryIoc/Prism.Unity
+3. 需要装插件：Xaml格式化工具、Prism Template Pack
+4. Button的基类是ButtonBase，ButtonBase的基类是ContentControl，ContentControl的基类是Control
 
 ## 参考资料
 
