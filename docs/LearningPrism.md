@@ -18,6 +18,10 @@
 2. Prism.Wpf依赖 Prism.Core; Prism.DryIoc/Prism.Unity(依赖注入容器), 这2个依赖Prism.Wpf和Prism.Core。安装Prism时，只需要安装Prism.DryIoc/Prism.Unity
 3. 需要装插件：Xaml格式化工具、Prism Template Pack
 4. Button的基类是ButtonBase，ButtonBase的基类是ContentControl，ContentControl的基类是Control
+5. RegionAdapter支持包含了ContentControlRegionAdapter/ItemsControlRegionAdapter/SelectorRegionAdapter，其他类型的control需要实现自定义的RegionAdapter。比如stackPanel就默认不支持。
+6. module概念
+   ![](./images/solution_in_prism.png)
+   
 
 ## 参考资料
 

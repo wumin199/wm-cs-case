@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWPF", "FirstWPF\FirstW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismDemo", "PrismDemo\PrismDemo.csproj", "{F3A31130-214F-400E-9178-60EC105DCAD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleA", "ModuleA\ModuleA.csproj", "{AB1298EA-504D-4E5B-BD36-30C1D5F8E27F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F3A31130-214F-400E-9178-60EC105DCAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3A31130-214F-400E-9178-60EC105DCAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3A31130-214F-400E-9178-60EC105DCAD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB1298EA-504D-4E5B-BD36-30C1D5F8E27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB1298EA-504D-4E5B-BD36-30C1D5F8E27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB1298EA-504D-4E5B-BD36-30C1D5F8E27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB1298EA-504D-4E5B-BD36-30C1D5F8E27F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
