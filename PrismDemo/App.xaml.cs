@@ -29,6 +29,7 @@ public partial class App : PrismApplication
   protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
   {
     // StackPanel默认是不adpater的，这里我们自定义一个适配器
+    // see: Core/Regions/StackPanelRegionAdapter.cs
     base.ConfigureRegionAdapterMappings(regionAdapterMappings);
     regionAdapterMappings.RegisterMapping(typeof(StackPanel), Container.Resolve<StackPanelRegionAdapter>());
   }
@@ -38,6 +39,19 @@ public partial class App : PrismApplication
     moduleCatalog.AddModule<ModuleAModule>();
   }
 
+
+  protected override void ConfigureViewModelLocator()
+  {
+    base.ConfigureViewModelLocator();
+
+    ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
+    {
+      var viewName = viewType.FullName;
+      var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
+      var viewModelName = $"{viewName.Replace("Controls", "ViewModels")}ViewModel, {viewAssemblyName}";
+      return Type.GetType(viewModelName);
+    });
+  }
 
 
 }

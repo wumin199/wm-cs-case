@@ -21,7 +21,15 @@
 5. RegionAdapter支持包含了ContentControlRegionAdapter/ItemsControlRegionAdapter/SelectorRegionAdapter，其他类型的control需要实现自定义的RegionAdapter。比如stackPanel就默认不支持。
 6. module概念
    ![](./images/solution_in_prism.png)
-   
+7. view == UserControl。 multiple views  == composite view
+8. 链接
+   ![](./images/making%20the%20connection.png)
+
+   ![](./images/making%20the%20connection2.png)
+9. Control一般定义成public，默认是internal的的
+10. 注意文件夹名称：Views/ 和 ViewModels/
+    ![](./images/changing%20the%20conversion.png)(支持修改默认关联)
+11. DelegateCommand是Prism提供的，和一般的WPF Command不同，没有eventHandler
 
 ## 参考资料
 
