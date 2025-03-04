@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ModuleA\ModuleA.csproj" />
+    <ProjectReference Include="..\PrismDemo.Core\PrismDemo.Core.csproj" />
   </ItemGroup>
 
 </Project>
