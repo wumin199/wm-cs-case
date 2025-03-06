@@ -7,7 +7,8 @@
 
 1. 找到破解包
 2. 先安装：DevExpressUniversalTrialCompleteSetup-20240815-24.1.5.exe
-3. 关闭防火墙，解压，安装：DevExpress.Universal.Patch.v2.4.8 (否则会被删除)
+3. "病毒与威胁防护" -> "管理设置" -> "实时保护" -> 关闭
+4. 解压，安装：DevExpress.Universal.Patch.v2.4.8 (否则会被删除)
    
    ![选择Dev版本](./images/破解DevExpress.png)
 
