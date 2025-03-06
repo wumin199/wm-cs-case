@@ -32,3 +32,4 @@
 
 - [DevExpress版本](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/)
 - [DevExpress WPF控件](https://docs.devexpress.com/WPF/7875/wpf-controls)(有控件的各自教程)
+   - [WPF Interactive Demos](https://docs.devexpress.com/WPF/14978/whats-installed/interactive-demos)(DevExpress安装后的一些资源介绍)
