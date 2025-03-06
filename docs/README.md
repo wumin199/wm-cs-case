@@ -95,6 +95,8 @@ Clean .NET项目：
 
 Solution Expoler的介绍：[project-management](https://code.visualstudio.com/docs/csharp/project-management)
 
+安装EidtorConfig插件，配置.editorconfig，然后 控制面板中选择格式化文档，或者直接按保存。
+
 
 其他：
 

@@ -5,6 +5,7 @@ using TestLib;
 using TestNuGet;
 using Tutorial;
 using System.Threading.Tasks;
+using TestTask;
 
 class Program
 {
@@ -54,8 +55,12 @@ class Program
     // var test = new Tutorial.DIBasics.Test4();
     // test.Run();
 
-    var test = new TestEvent();
-    test.Test1();
+    // var test = new TestEvent();
+    // test.Test1();
+
+    var test = new TestTask.Test();
+    await test.Test1();
+
   }
 
 

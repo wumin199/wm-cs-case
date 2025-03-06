@@ -1,16 +1,12 @@
 
-https://app.pluralsight.com/ilx/video-courses/fca37260-bdfb-4c6a-b6c8-ac6bc30f2d6e/e8dbe6fb-e509-4764-9e96-549a74d4e986/e17219ef-59b6-4b27-a124-419bc180664e
 
 ## 关键词
 
-1. MVVM
-2. Prism使用依赖注入模式，因此需要了解依赖注入和IoC容器
-3. Prism提供了一种事件聚合器，使得各个模块之间可以进行松耦合的通信。
-4. xaml自动格式化
-5. CommunityToolkit
-6. Prism.Unity
-7. DevExpress
-8. Ribbon
+参考: [wm-Prism-Samples-Wpf](https://github.com/wumin199/wm-Prism-Samples-Wpf)
+
+1. Prism使用依赖注入模式，因此需要了解依赖注入和IoC容器
+2. Prism提供了一种事件聚合器，使得各个模块之间可以进行松耦合的通信。
+3. xaml自动格式化
 
 
 ## 笔记
@@ -41,5 +37,6 @@ Prism提供了包括MVVM、依赖注入、命令和事件聚合器等设计模�
 - [Introduction to Prism](https://prismlibrary.github.io/docs/)
   - [Prism简介](https://csharpshare.com/articles/framework/prism-doc/index.html)
   - [NuGet包中库的介绍](https://csharpshare.com/articles/framework/prism-doc/getting-started/NuGet-Packages.html)
+  - [Registering Types with Prism](https://csharpshare.com/articles/framework/prism-doc/dependency-injection/registering-types.html)(有了这个，就不需要static了)
 - [Github-Prism](https://github.com/PrismLibrary/Prism)
-  - [Prism-Samples-Wpf](https://github.com/PrismLibrary/Prism-Samples-Wpf)
+  - [wm-Prism-Samples-Wpf](https://github.com/wumin199/wm-Prism-Samples-Wpf)

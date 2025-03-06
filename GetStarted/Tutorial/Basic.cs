@@ -436,3 +436,267 @@ namespace TestNuGet
     }
   }
 }
+
+
+namespace TestTask
+{
+  using System;
+  using System.Threading;
+  using System.Threading.Tasks;
+  using System.Collections.Generic;
+  using System.Linq;
+
+  // 1. Task基础示例类
+  public class TaskExample
+  {
+    public void BasicTask()
+    {
+      Task task = Task.Run(() =>
+      {
+        Console.WriteLine("Task正在运行...");
+        Thread.Sleep(5000);
+        Console.WriteLine("Task完成");
+      });
+      task.Wait();
+    }
+
+    public async Task<int> TaskWithResult()
+    {
+      return await Task.Run(() =>
+      {
+        Thread.Sleep(3000);
+        return 42;
+      });
+    }
+  }
+
+  // 2. async/await示例类
+  public class AsyncAwaitExample
+  {
+    public async Task DoWorkAsync()
+    {
+      Console.WriteLine("开始工作");
+      await Task.Delay(3000);
+      Console.WriteLine("工作完成");
+    }
+
+    public async Task CallAsyncMethods()
+    {
+      Console.WriteLine("方法调用开始");
+      await DoWorkAsync();
+      Console.WriteLine("方法调用结束");
+    }
+  }
+
+  // 3. Task状态和异常示例类
+  public class TaskStatusExample
+  {
+    public async Task TaskStatusAndException()
+    {
+      Task successTask = Task.Run(() =>
+      {
+        Console.WriteLine("成功Task执行中");
+        Thread.Sleep(3000);
+      });
+      await successTask;
+      Console.WriteLine($"Task状态: {successTask.Status}");
+
+      Task failedTask = Task.Run(() =>
+      {
+        throw new Exception("Task失败");
+      });
+      try
+      {
+        await failedTask;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine($"Task异常: {ex.Message}");
+        Console.WriteLine($"Task状态: {failedTask.Status}");
+      }
+    }
+  }
+
+  // 4. Task组合示例类
+  public class TaskCombinationExample
+  {
+    public async Task CombineTasks()
+    {
+      Task task1 = Task.Run(() =>
+      {
+        Thread.Sleep(1000);
+        Console.WriteLine("Task 1完成");
+      });
+
+      Task task2 = Task.Run(() =>
+      {
+        Thread.Sleep(4000);
+        Console.WriteLine("Task 2完成");
+      });
+
+      await Task.WhenAll(task1, task2);
+      Console.WriteLine("所有Task完成");
+
+      Task task3 = Task.Run(() =>
+      {
+        Thread.Sleep(3000);
+        Console.WriteLine("Task 3完成");
+      });
+
+      Task task4 = Task.Run(() =>
+      {
+        Thread.Sleep(1000);
+        Console.WriteLine("Task 4完成");
+      });
+
+      await Task.WhenAny(task3, task4);
+      Console.WriteLine("有一个Task完成");
+    }
+  }
+
+  // 5. Task取消示例类
+  public class TaskCancellationExample
+  {
+    public async Task CancellableTask()
+    {
+      using var cts = new CancellationTokenSource();
+
+      Task task = Task.Run(() =>
+      {
+        for (int i = 0; i < 10; i++)
+        {
+          if (cts.Token.IsCancellationRequested)
+          {
+            Console.WriteLine("Task被取消");
+            return;
+          }
+          Thread.Sleep(500);
+          Console.WriteLine($"执行进度: {i + 1}");
+        }
+      }, cts.Token);
+
+      await Task.Delay(3000);
+      cts.Cancel();
+
+      try
+      {
+        await task;
+      }
+      catch (OperationCanceledException)
+      {
+        Console.WriteLine("捕获到取消异常");
+      }
+    }
+  }
+
+  // 6. Task超时示例类
+  public class TaskTimeoutExample
+  {
+    public async Task TaskWithTimeout()
+    {
+      using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+
+      try
+      {
+        await Task.Run(() =>
+        {
+          for (int i = 0; i < 10; i++)
+          {
+            cts.Token.ThrowIfCancellationRequested();
+            Thread.Sleep(1000);
+            Console.WriteLine($"执行进度: {i + 1}");
+          }
+        }, cts.Token);
+      }
+      catch (OperationCanceledException)
+      {
+        Console.WriteLine("Task超时");
+      }
+    }
+  }
+
+  // 7. 异步数据服务示例类
+  public class AsyncDataService
+  {
+    private readonly Random _random = new Random();
+
+    public async Task<List<int>> GetDataAsync(int count)
+    {
+      return await Task.Run(() =>
+      {
+        var data = new List<int>();
+        for (int i = 0; i < count; i++)
+        {
+          Thread.Sleep(1000);
+          data.Add(_random.Next(100));
+        }
+        return data;
+      });
+    }
+
+    public async Task ProcessDataAsync(List<int> data)
+    {
+      await Task.Run(() =>
+      {
+        foreach (var item in data)
+        {
+          Thread.Sleep(100);
+          Console.WriteLine($"处理数据: {item}");
+        }
+      });
+    }
+  }
+
+
+
+  public class Test
+  {
+    public async Task Test1()
+    {
+      Console.WriteLine("=== 异步编程完整示例 ===");
+
+      // 1. 基础Task示例
+      // Console.WriteLine("\n1. 基础Task示例:");
+      // var taskExample = new TaskExample();
+      // taskExample.BasicTask();
+      // int result = await taskExample.TaskWithResult();
+      // Console.WriteLine("done");
+      // Console.WriteLine($"返回值: {result}");
+
+      // // 2. async/await示例
+      // Console.WriteLine("\n2. async/await示例:");
+      // var asyncExample = new AsyncAwaitExample();
+      // await asyncExample.CallAsyncMethods();
+
+      // // 3. Task状态和异常示例
+      // Console.WriteLine("\n3. Task状态和异常示例:");
+      // var statusExample = new TaskStatusExample();
+      // await statusExample.TaskStatusAndException();
+
+      // // 4. Task组合示例
+      // Console.WriteLine("\n4. Task组合示例:");
+      // var combinationExample = new TaskCombinationExample();
+      // await combinationExample.CombineTasks();
+
+      // // 5. Task取消示例
+      // Console.WriteLine("\n5. Task取消示例:");
+      // var cancellationExample = new TaskCancellationExample();
+      // await cancellationExample.CancellableTask();
+
+      // // 6. Task超时示例
+      // Console.WriteLine("\n6. Task超时示例:");
+      // var timeoutExample = new TaskTimeoutExample();
+      // await timeoutExample.TaskWithTimeout();
+
+      // // 7. 异步数据服务示例
+      Console.WriteLine("\n7. 异步数据服务示例:");
+      var dataService = new AsyncDataService();
+      Console.WriteLine("开始获取");
+      var data = await dataService.GetDataAsync(5);
+      Console.WriteLine("获取数据ing");
+      await dataService.ProcessDataAsync(data);
+
+      // Console.WriteLine("\n所有示例执行完成");
+    }
+  }
+}
