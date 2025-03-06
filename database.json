@@ -1,0 +1,6 @@
+{
+  "Server": "new-server.example.com",
+  "Port": 3306,
+  "UseSSL": true,
+  "Timeout": 60
+}

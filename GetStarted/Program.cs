@@ -10,6 +10,7 @@ using TestReflection;
 using TestSimpleReflection;
 using TestFlexibleReflection;
 using TestSerialization;
+using TestDynamicConfig;
 class Program
 {
   static void Main(string[] args)
@@ -70,7 +71,9 @@ class Program
 
     // FlexibleReflectionDemo.Test();
 
-    TestSerialization.SerializationDemo.Test();
+    // TestSerialization.SerializationDemo.Test();
+
+    TestDynamicConfig.DynamicConfigDemo.Test();
 
 
   }
