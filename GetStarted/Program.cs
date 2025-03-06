@@ -6,10 +6,14 @@ using TestNuGet;
 using Tutorial;
 using System.Threading.Tasks;
 using TestTask;
-
+using TestReflection;
+using TestSimpleReflection;
+using TestFlexibleReflection;
+using TestSerialization;
+using TestDynamicConfig;
 class Program
 {
-  static async Task Main(string[] args)
+  static void Main(string[] args)
   {
     // Console.WriteLine("Hello World, That's Get Started!");
 
@@ -58,8 +62,19 @@ class Program
     // var test = new TestEvent();
     // test.Test1();
 
-    var test = new TestTask.Test();
-    await test.Test1();
+    // var test = new TestTask.Test();
+    // await test.Test1();
+
+    // TestReflection.Test.RunAllExamples();
+
+    // TestSimpleReflection.SimpleReflectionDemo.RunDemo();
+
+    // FlexibleReflectionDemo.Test();
+
+    // TestSerialization.SerializationDemo.Test();
+
+    TestDynamicConfig.DynamicConfigDemo.Test();
+
 
   }
 

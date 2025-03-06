@@ -5,6 +5,7 @@ using System.IO;
 using System.Text.Json;
 using UtilityLibraries; // 需要先引入 UtilityLibraries 项目
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace GetStarted
 {
@@ -700,3 +701,120 @@ namespace TestTask
     }
   }
 }
+
+namespace TestFlexibleReflection
+{
+  // 自定义特性，用于标记配置项
+  [AttributeUsage(AttributeTargets.Property)]
+  public class ConfigItemAttribute : Attribute
+  {
+    public string Description { get; }
+    public bool Required { get; }
+
+    public ConfigItemAttribute(string description, bool required = false)
+    {
+      Description = description;
+      Required = required;
+    }
+  }
+
+  // 自定义特性，用于标记显示项
+  [AttributeUsage(AttributeTargets.Property)]
+  public class DisplayItemAttribute : Attribute
+  {
+    public string Label { get; }
+    public int Order { get; }
+
+    public DisplayItemAttribute(string label, int order = 0)
+    {
+      Label = label;
+      Order = order;
+    }
+  }
+
+  public class AppSettings
+  {
+    [ConfigItem("服务器地址", true)]
+    public string ServerUrl { get; set; }
+
+    [ConfigItem("端口号", true)]
+    public int Port { get; set; }
+
+    [ConfigItem("是否启用调试模式")]
+    public bool IsDebugMode { get; set; }
+  }
+
+  public class PersonInfo
+  {
+    [DisplayItem("姓名", 1)]
+    public string Name { get; set; }
+
+    [DisplayItem("电子邮件", 2)]
+    public string Email { get; set; }
+
+    [DisplayItem("年龄", 3)]
+    public int Age { get; set; }
+  }
+
+  public class FlexibleReflectionDemo
+  {
+    // 显示所有标记了ConfigItem特性的配置项
+    public static void ShowConfigItems(object obj)
+    {
+      Console.WriteLine("=== 配置项 ===");
+      foreach (PropertyInfo prop in obj.GetType().GetProperties())
+      {
+        var attr = prop.GetCustomAttribute<ConfigItemAttribute>();
+        if (attr != null)
+        {
+          object value = prop.GetValue(obj);
+          Console.WriteLine($"{attr.Description}: {value} {(attr.Required ? "(必填)" : "")}");
+        }
+      }
+    }
+
+    // 显示所有标记了DisplayItem特性的显示项
+    public static void ShowDisplayItems(object obj)
+    {
+      Console.WriteLine("\n=== 显示项 ===");
+      var props = obj.GetType().GetProperties()
+                    .Select(p => new
+                    {
+                      Property = p,
+                      Attribute = p.GetCustomAttribute<DisplayItemAttribute>()
+                    })
+                    .Where(x => x.Attribute != null)
+                    .OrderBy(x => x.Attribute.Order);
+
+      foreach (var item in props)
+      {
+        object value = item.Property.GetValue(obj);
+        Console.WriteLine($"{item.Attribute.Label}: {value}");
+      }
+    }
+
+    public static void Test()
+    {
+      Console.WriteLine("使用特性的反射示例\n");
+
+      // 测试配置项
+      // var settings = new AppSettings
+      // {
+      //   ServerUrl = "localhost",
+      //   Port = 8080,
+      //   IsDebugMode = true
+      // };
+      // ShowConfigItems(settings);
+
+      // 测试显示项
+      var person = new PersonInfo
+      {
+        Name = "张三",
+        Email = "zhangsan@example.com",
+        Age = 25
+      };
+      ShowDisplayItems(person);
+    }
+  }
+}
+
