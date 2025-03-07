@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Images" Version="24.1.5" />
+    <PackageReference Include="devexpress.wpf.charts" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Core" Version="24.1.5" />
+    <PackageReference Include="DevExpress.Wpf.ThemesLW" Version="24.1.5" />
+  </ItemGroup>
+
+</Project>

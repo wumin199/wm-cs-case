@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleA", "ModuleA\ModuleA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismDemo.Core", "PrismDemo.Core\PrismDemo.Core.csproj", "{7C37FC71-C2E2-4149-A9A2-E54B70BA142C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpressDemo", "DevExpressDemo\DevExpressDemo.csproj", "{CADE08E3-260D-4762-A95B-48BA403C45E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXApp", "DXApp\DXApp.csproj", "{144670CB-6396-488C-A76D-2E03A3B69E78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,10 @@ Global
 		{7C37FC71-C2E2-4149-A9A2-E54B70BA142C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C37FC71-C2E2-4149-A9A2-E54B70BA142C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C37FC71-C2E2-4149-A9A2-E54B70BA142C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CADE08E3-260D-4762-A95B-48BA403C45E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CADE08E3-260D-4762-A95B-48BA403C45E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CADE08E3-260D-4762-A95B-48BA403C45E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CADE08E3-260D-4762-A95B-48BA403C45E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144670CB-6396-488C-A76D-2E03A3B69E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144670CB-6396-488C-A76D-2E03A3B69E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144670CB-6396-488C-A76D-2E03A3B69E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144670CB-6396-488C-A76D-2E03A3B69E78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

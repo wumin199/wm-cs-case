@@ -23,8 +23,22 @@
 
 6. 例子：`C:\Users\Public\Documents\DevExpress Demos 24.1\Components`
 7. 其他例子：
+
+
+## 基础操作
+
+
+[Menu Entries](https://docs.devexpress.com/WPF/16772/whats-installed/menu-entries)
+
+[Quick Actions](https://docs.devexpress.com/WPF/402198/whats-installed/smart-tags/suggested-actions)(vs 2019以后支持)
+
+[DevExpress Image Picker](https://docs.devexpress.com/WPF/120093/common-concepts/images/devexpress-image-gallery)
+
    
-   
+
+## 案例
+
+1. 日志需要是单例，且是线程安全的
 
 
 
@@ -33,3 +47,4 @@
 - [DevExpress版本](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/)
 - [DevExpress WPF控件](https://docs.devexpress.com/WPF/7875/wpf-controls)(有控件的各自教程)
    - [WPF Interactive Demos](https://docs.devexpress.com/WPF/14978/whats-installed/interactive-demos)(DevExpress安装后的一些资源介绍)
+- [Getting Started](https://docs.devexpress.com/WPF/401166/dotnet-core-support/getting-started)
