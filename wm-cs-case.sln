@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleA", "ModuleA\ModuleA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismDemo.Core", "PrismDemo.Core\PrismDemo.Core.csproj", "{7C37FC71-C2E2-4149-A9A2-E54B70BA142C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXApp", "DXApp\DXApp.csproj", "{144670CB-6396-488C-A76D-2E03A3B69E78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXDemo1", "DXDemo1\DXDemo1.csproj", "{144670CB-6396-488C-A76D-2E03A3B69E78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

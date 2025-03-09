@@ -12,7 +12,7 @@
    
    ![选择Dev版本](./images/破解DevExpress.png)
 
-   选择visual studio版本 + DevExpress版本。DevExpress版本就是安装包名字的版本，这里是24.1
+   选择visual studio版本 + DevExpress版本。DevExpress版本就是安装包名字的版本，这里是24.1。VS版本选择2022社区版。
 
    然后点Patch
 
@@ -48,3 +48,6 @@
 - [DevExpress WPF控件](https://docs.devexpress.com/WPF/7875/wpf-controls)(有控件的各自教程)
    - [WPF Interactive Demos](https://docs.devexpress.com/WPF/14978/whats-installed/interactive-demos)(DevExpress安装后的一些资源介绍)
 - [Getting Started](https://docs.devexpress.com/WPF/401166/dotnet-core-support/getting-started)
+- [Common Concepts](https://docs.devexpress.com/WPF/6794/common-concepts)
+- [Control List: In Alphabetical Order](https://docs.devexpress.com/WPF/116333/whats-installed/control-list-in-alphabetical-order)
+- [DevExpress.AIIntegration.Wpf Namespace](https://docs.devexpress.com/WPF/DevExpress.AIIntegration.Wpf)
