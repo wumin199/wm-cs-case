@@ -170,6 +170,36 @@ dotnet build
 dotnet run
 ```
 
+
+## Layout介绍
+
+参考：
+
+- [布局](https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/layout?view=netframeworkdesktop-4.8&viewFallbackFrom=netdesktop-8.0)
+- [DevExpress Layout Management](https://docs.devexpress.com/WPF/115547/controls-and-libraries/layout-management)
+
+WPF中的基本控制面板类控件都是从 Panel 类中派生出来的， Panel 本身是 UIElement。
+
+Panel(Abstract)排成出来的排版控件：
+
+- StackPanel
+- WrapPanel
+- UniformGrid
+- DockPanel
+- Grid
+- Canvas
+
+The layout of controls is very important and critical for application usability. It is used to arrange a group of GUI elements in your application. 
+
+
+## 多文档/当文档
+
+MDI、SDI
+
+多文档的文档，指的是页面。类似vscode，支持同时查看调试面包你、代码面板等。
+
+- [MDI, SDI, and MFI Interface Types in WinForms Applications](https://community.devexpress.com/blogs/winforms/archive/2020/08/10/multi-and-single-document-interfaces-in-winforms-applications.aspx)
+
 ## 教程
 
 - [教程：使用 C 创建 WPF 应用程序](https://learn.microsoft.com/zh-cn/visualstudio/get-started/csharp/tutorial-wpf)(拖拽控件)
