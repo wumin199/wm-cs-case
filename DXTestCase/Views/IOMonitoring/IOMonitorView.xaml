@@ -1,0 +1,178 @@
+﻿<UserControl
+    x:Class="DXTestCase.Views.IOMonitoring.IOMonitorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DXTestCase.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:io="clr-namespace:DXTestCase.Models.IO"
+    xmlns:local="clr-namespace:DXTestCase.Views.IOMonitoring"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IODeviceTypeToVisibilityConverter x:Key="IOTypeVisibilityConverter" />
+        <converters:BooleanToOnOffConverter x:Key="BoolToOnOffConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="200" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <dxg:TreeViewControl
+            Grid.Column="0"
+            AutoExpandAllNodes="True"
+            ChildNodesPath="IOMonitorEntries"
+            ItemsSource="{Binding IOMonitorRoot}"
+            SelectedItem="{Binding SelectedMonitorEntry}"
+            ShowBorder="True"
+            TreeViewFieldName="Name" />
+        <GridSplitter
+            Grid.Column="1"
+            Width="10"
+            Padding="4,0,4,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch" />
+
+        <Grid Grid.Column="2">
+            <DataGrid
+                AutoGenerateColumns="False"
+                BorderThickness="1"
+                CanUserSortColumns="False"
+                GridLinesVisibility="All"
+                HorizontalGridLinesBrush="#E0E0E0"
+                IsReadOnly="True"
+                ItemsSource="{Binding UIData}"
+                SelectionMode="Single"
+                VerticalGridLinesBrush="#E0E0E0"
+                Visibility="{Binding SelectedMonitorEntry, Converter={StaticResource IOTypeVisibilityConverter}, ConverterParameter=UI}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Name}"
+                        Header="名称" />
+                    <DataGridTextColumn
+                        Width="150"
+                        Binding="{Binding IOState, Converter={StaticResource BoolToOnOffConverter}}"
+                        Header="状态" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Description}"
+                        Header="描述">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#F5F5F5" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid
+                AutoGenerateColumns="False"
+                BorderThickness="1"
+                CanUserSortColumns="False"
+                GridLinesVisibility="All"
+                HorizontalGridLinesBrush="#E0E0E0"
+                IsReadOnly="True"
+                ItemsSource="{Binding UOData}"
+                SelectionMode="Single"
+                VerticalGridLinesBrush="#E0E0E0"
+                Visibility="{Binding SelectedMonitorEntry, Converter={StaticResource IOTypeVisibilityConverter}, ConverterParameter=UO}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Name}"
+                        Header="名称" />
+                    <DataGridTextColumn
+                        Width="150"
+                        Binding="{Binding IOState, Converter={StaticResource BoolToOnOffConverter}}"
+                        Header="状态" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Description}"
+                        Header="描述">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#F5F5F5" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid
+                AutoGenerateColumns="False"
+                BorderThickness="1"
+                CanUserSortColumns="False"
+                GridLinesVisibility="All"
+                HorizontalGridLinesBrush="#E0E0E0"
+                IsReadOnly="True"
+                ItemsSource="{Binding SysIData}"
+                SelectionMode="Single"
+                VerticalGridLinesBrush="#E0E0E0"
+                Visibility="{Binding SelectedMonitorEntry, Converter={StaticResource IOTypeVisibilityConverter}, ConverterParameter=SysIn}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Name}"
+                        Header="名称" />
+                    <DataGridTextColumn
+                        Width="150"
+                        Binding="{Binding IOState, Converter={StaticResource BoolToOnOffConverter}}"
+                        Header="状态" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Description}"
+                        Header="描述">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#F5F5F5" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid
+                AutoGenerateColumns="False"
+                BorderThickness="1"
+                CanUserSortColumns="False"
+                GridLinesVisibility="All"
+                HorizontalGridLinesBrush="#E0E0E0"
+                IsReadOnly="True"
+                ItemsSource="{Binding SysOData}"
+                SelectionMode="Single"
+                VerticalGridLinesBrush="#E0E0E0"
+                Visibility="{Binding SelectedMonitorEntry, Converter={StaticResource IOTypeVisibilityConverter}, ConverterParameter=SysOut}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Name}"
+                        Header="名称" />
+                    <DataGridTextColumn
+                        Width="150"
+                        Binding="{Binding IOState, Converter={StaticResource BoolToOnOffConverter}}"
+                        Header="状态" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Description}"
+                        Header="描述">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#F5F5F5" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>
