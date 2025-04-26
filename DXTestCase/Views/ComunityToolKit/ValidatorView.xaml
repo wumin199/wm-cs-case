@@ -1,0 +1,24 @@
+<UserControl
+    x:Class="DXTestCase.Views.ComunityToolKit.ValidatorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DXTestCase.Views.ComunityToolKit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,10,0"
+                VerticalAlignment="Center"
+                Text="设置速度: " />
+            <TextBox Width="100" Text="{Binding Velocity}" />
+            <Button
+                Margin="10,0,10,0"
+                Command="{Binding SettingCommand}"
+                Content="设置" />
+        </StackPanel>
+    </Grid>
+</UserControl>
