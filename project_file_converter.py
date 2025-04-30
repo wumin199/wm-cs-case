@@ -157,7 +157,7 @@ def get_case_combinations(word):
     return [first.lower() + c for c in combinations] + [first.upper() + c for c in combinations]
 
 # 生成所有可能的大小写组合
-exclude_patterns = ['bin', 'obj']
+exclude_patterns = ['bin', 'obj', 'Submodules', 'ThirdParty']  # 添加要忽略的目录
 exclude_dirs = set()
 for pattern in exclude_patterns:
     exclude_dirs.update(get_case_combinations(pattern))
@@ -178,10 +178,11 @@ def process_project():
     
     print(f"开始处理项目: {project_root}")
     print("正在搜索.cs文件...")
+    print(f"忽略的目录: {', '.join(exclude_patterns)}")
     
     # 遍历所有.cs文件
     for root, dirs, files in os.walk(project_root):
-        # 排除bin和obj目录（不区分大小写）
+        # 排除指定的目录（不区分大小写）
         dirs[:] = [d for d in dirs if d not in exclude_dirs]
         
         for file in files:
@@ -246,6 +247,7 @@ if __name__ == "__main__":
     1. 安装必要的包：
        pip install pywin32 keyboard
     2. 将此脚本放在项目根目录下
+    3. 在python开头处的exclude_patterns中添加需要排除的文件夹
     3. 运行脚本
     
     注意：
